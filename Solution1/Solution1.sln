@@ -3,6 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{547732B1-87FB-445D-9B4C-39FC52C55831}"
+	ProjectSection(SolutionItems) = preProject
+		..\frmCreateOrder.aspx = ..\frmCreateOrder.aspx
+		..\frmCreateOrder.aspx.cs = ..\frmCreateOrder.aspx.cs
+		..\frmLogin.aspx = ..\frmLogin.aspx
+		..\frmLogin.aspx.cs = ..\frmLogin.aspx.cs
+		..\frmMyAccount.aspx = ..\frmMyAccount.aspx
+		..\frmMyAccount.aspx.cs = ..\frmMyAccount.aspx.cs
+		..\frmUpdateOrder.aspx = ..\frmUpdateOrder.aspx
+		..\frmUpdateOrder.aspx.cs = ..\frmUpdateOrder.aspx.cs
+		..\frmViewOrders.aspx = ..\frmViewOrders.aspx
+		..\frmViewOrders.aspx.cs = ..\frmViewOrders.aspx.cs
+		..\StyleSheet.css = ..\StyleSheet.css
+		..\Web.config = ..\Web.config
+		..\Web.Debug.config = ..\Web.Debug.config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
