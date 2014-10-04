@@ -21,7 +21,7 @@
     
     <form id="form1" runat="server">
     <div>
-       <asp:Label ID="lblStatus" runat="server" Text="Please enter your Username and Password or we will boil you in acid" CssClass="loginLblStatus"></asp:Label> 
+       <asp:Label ID="lblStatus" runat="server" Text="Please enter your Username and Password" CssClass="loginLblStatus"></asp:Label> 
     <table class="login" align="center">
     
           <tr>
