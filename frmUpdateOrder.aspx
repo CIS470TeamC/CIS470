@@ -5,18 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <link href="StyleSheet.css" rel="stylesheet" />
-        <style type="text/css">
-        .auto-style1 {
-            text-align: center;
-        }
-        a:link {
-            text-decoration: none;
-        }
         
-        a:visited {
-            text-decoration: none;
-        }
- </style>
     <title></title>
 </head>
 <body>
