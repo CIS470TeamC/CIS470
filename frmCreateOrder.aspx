@@ -24,7 +24,6 @@
     <asp:Label ID="Label3" runat="server" Text="CREATE ORDER" CssClass="declarePage"></asp:Label>
             <div>Do whatever I feel like</div>
             <div>And not screw anything up</div>
-            <div>Indeed you can</div>
             </div>
     <form id="form1" runat="server">
     <div>
