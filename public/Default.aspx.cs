@@ -9,6 +9,17 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["SecurityLevel"] == null) 
+        {
+            lblLogout.Visible = false;
+        
+        }
+        else
+        {
 
+            lblLogin.Visible = false;
+
+
+        }
     }
 }

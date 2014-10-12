@@ -26,25 +26,32 @@
     
           <tr>
             <td>
-                <asp:Label ID="Label1" runat="server" Text="Username: "></asp:Label>
+                <asp:Label ID="lblUserName" runat="server" Text="Username: "></asp:Label>
             </td>
               <td>
-                  <asp:TextBox ID="TextBox1" runat="server" Height="25px"></asp:TextBox>
+                  <asp:TextBox ID="txtUserName" runat="server" Height="25px"></asp:TextBox>
+              </td>
+              <td>
+                  <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Must Enter Username!" ControlToValidate="txtUserName" ForeColor="Red"></asp:RequiredFieldValidator>
               </td>
           </tr>
         <tr>
             <td>
-                <asp:Label ID="Label2" runat="server" Text="Password: "></asp:Label>
+                <asp:Label ID="lblPassword" runat="server" Text="Password: "></asp:Label>
             </td>
             <td>
-                  <asp:TextBox ID="TextBox2" runat="server" Height="25px"></asp:TextBox>
+                  <asp:TextBox ID="txtPassword" runat="server" Height="25px" TextMode="Password"></asp:TextBox>
               </td>
-          </tr>
-        <tr>
             <td>
-                <asp:Button ID="Button1" runat="server" Text="Login" CssClass="btn" />
-            </td>
 
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Must Enter Password!" ControlToValidate="txtPassword" ForeColor="Red"></asp:RequiredFieldValidator>
+            </td>
+          </tr>
+        <tr>
+            <td>
+                <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn" OnClick="btnLogin_Click"/>
+            </td>
+            
           </tr>
 
     </table>

@@ -9,12 +9,12 @@
     <title></title>
 </head>
 <body>
-    <asp:HyperLink ID="Home" runat="server" NavigateUrl="Default.aspx">
+    <asp:HyperLink ID="Home" runat="server" NavigateUrl="public/Default.aspx">
     <img src="images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
      <table>
           <tr>
-            <td><a href="Default.aspx" class="topMenuLeft">Logout</a>
+            <td><a href="public/Default.aspx" class="topMenuLeft">LOGOUT</a>
             </td>
           </tr>
 
