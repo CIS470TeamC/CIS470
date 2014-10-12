@@ -26,7 +26,7 @@
     <div>
         <asp:Login ID="Login1" runat="server" 
             TitleText="Please enter your UserName and Password in order to log into the system" 
-            onauthenticate="Login1_Authenticate">
+            onauthenticate="Login1_Authenticate" DestinationPageUrl="~/frmMyAccount.aspx">
         </asp:Login>
     </div>
     </form>

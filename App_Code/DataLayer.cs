@@ -23,7 +23,7 @@ using System.Data;
             OleDbDataAdapter sqlDA;
 
             // Creating new DB connection
-            sqlConn = new OleDbConnection("Microsoft.ACE.OLEDB.12.0;" +
+            sqlConn = new OleDbConnection("PROVIDER=Microsoft.ACE.OLEDB.12.0;" +
                                           "Data Source=" + Database);
 
             // Creating new data adaptor to communicate with database. SQL statement is also given here
