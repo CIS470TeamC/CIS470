@@ -22,34 +22,12 @@
     <form id="form1" runat="server">
     <div>
        <asp:Label ID="lblStatus" runat="server" Text="Please enter your Username and Password" CssClass="loginLblStatus"></asp:Label> 
-    <table class="login" align="center">
-    
-          <tr>
-            <td>
-                <asp:Label ID="Label1" runat="server" Text="Username: "></asp:Label>
-            </td>
-              <td>
-                  <asp:TextBox ID="TextBox1" runat="server" Height="25px"></asp:TextBox>
-              </td>
-          </tr>
-        <tr>
-            <td>
-                <asp:Label ID="Label2" runat="server" Text="Password: "></asp:Label>
-            </td>
-            <td>
-                  <asp:TextBox ID="TextBox2" runat="server" Height="25px"></asp:TextBox>
-              </td>
-          </tr>
-        <tr>
-            <td>
-                <asp:Button ID="Button1" runat="server" Text="Login" CssClass="btn" />
-            </td>
-
-          </tr>
-
-    </table>
-        
-
+    </div>
+    <div>
+        <asp:Login ID="Login1" runat="server" 
+            TitleText="Please enter your UserName and Password in order to log into the system" 
+            onauthenticate="Login1_Authenticate">
+        </asp:Login>
     </div>
     </form>
 </body>
