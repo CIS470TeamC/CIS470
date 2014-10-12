@@ -41,17 +41,17 @@ public partial class frmLogin : System.Web.UI.Page
 
                 case 1:
                     FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, false);
-                    Session["SecurityLevel"] = 1;
+                    Session["SecurityLevel"] = txtUserName.Text;
                     Response.Redirect("public/frmCatalog.aspx");
                     break;
                 case 2:
                     FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, false);
-                    Session["SecurityLevel"] = 2;
+                    Session["SecurityLevel"] = txtUserName.Text;
                     Response.Redirect("frmViewOrders.aspx");
                     break;
                 case 3:
                     FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, false);
-                    Session["SecurityLevel"] = 3;
+                    Session["SecurityLevel"] = txtUserName.Text;
                     Response.Redirect("frmUpdateOrder.aspx");
                     break;
                     

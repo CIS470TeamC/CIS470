@@ -28,19 +28,7 @@
 
     </table>
     
-        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" class="login" AutoGenerateColumns="False" DataKeyNames="SalesOrderID" DataSourceID="SqlDataSource1">
-            <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="SalesOrderID" HeaderText="SalesOrderID" InsertVisible="False" ReadOnly="True" SortExpression="SalesOrderID" />
-                <asp:BoundField DataField="PaidAmt" HeaderText="PaidAmt" SortExpression="PaidAmt" />
-                <asp:BoundField DataField="RemainingAmt" HeaderText="RemainingAmt" SortExpression="RemainingAmt" />
-                <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID" SortExpression="EmployeeID" />
-                <asp:BoundField DataField="CustID" HeaderText="CustID" SortExpression="CustID" />
-                <asp:BoundField DataField="OrderID" HeaderText="OrderID" SortExpression="OrderID" />
-            </Columns>
-        </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [SalesOrderForm]"></asp:SqlDataSource>
-    
+
     </div>
     </form>
 </body>
