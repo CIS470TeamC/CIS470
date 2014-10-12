@@ -24,6 +24,11 @@
                   <asp:Label ID="lblLogout" runat="server" Text="LOGOUT" CssClass="topMenuLeft"></asp:Label>
                       </asp:HyperLink>
               </td>
+              <td>
+                  <asp:HyperLink ID="MyAccount" runat="server" NavigateUrl="~/frmMyAccount.aspx">
+                  <asp:Label ID="lblMyAccount" runat="server" Text="MYACCOUNT" CssClass="topMenuRight"></asp:Label>
+                      </asp:HyperLink>
+              </td>
           </tr>
 
     </table>

@@ -27,7 +27,7 @@
                   <asp:HyperLink ID="MyAccount" runat="server" NavigateUrl="~/frmMyAccount.aspx">
                   <asp:Label ID="lblMyAccount" runat="server" Text="MYACCOUNT" CssClass="topMenuRight"></asp:Label>
                       </asp:HyperLink>
-            </td>
+              </td>
           </tr>
         </table>
         <div style="margin-left: auto; margin-right: auto; text-align: center;">
