@@ -20,17 +20,17 @@ public partial class frmLogin : System.Web.UI.Page
             dsUser dsUserLogin;
 
             // Declaring variable which will hold security level
-            string SecurityLevel;
+            string UserSecLevel;
 
             // Collecting the data entered into the form and storing it in an object
             dsUserLogin = DataLayer.VerifyUser(Server.MapPath("SiteDB.mdb"),
                                 Login1.UserName, Login1.Password);          
 
             // Security level formatted to string to pass to switch statement below
-            SecurityLevel = dsUserLogin.Users[0].UserSecLevel.ToString();
+            UserSecLevel = dsUserLogin.Users[0].UserSecLevel.ToString();
 
             // Switch statement to handle the login scenarios and differing access levels
-            switch (SecurityLevel)
+            switch (UserSecLevel)
             {
 
                 case "1":
