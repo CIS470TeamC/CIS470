@@ -14,7 +14,7 @@
     </asp:HyperLink>
      <table>
           <tr>
-            <td><a href="Default.aspx" class="topMenuLeft">LOGOUT</a>
+            <td><a href="public/Default.aspx" class="topMenuLeft">LOGOUT</a>
             </td>
           </tr>
 
