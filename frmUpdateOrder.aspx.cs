@@ -12,7 +12,17 @@ public partial class frmUpdateOrder : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        if (Session["SecurityLevel"] == null)
+        {
+            Response.Redirect("frmLogin.aspx");
+        }
     }
-    
+    protected void lbtnLogout_Click(object sender, EventArgs e)
+    {
+
+        Session["SecurityLevel"] = null;
+
+
+        Response.Redirect("public/default.aspx");
+    }
 }

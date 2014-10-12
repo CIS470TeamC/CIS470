@@ -12,13 +12,7 @@
     <asp:HyperLink ID="Home" runat="server" NavigateUrl="~/public/Default.aspx">
     <img src="images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
-     <table>
-          <tr>
-            <td><a href="Default.aspx" class="topMenuLeft">Logout</a>
-            </td>
-          </tr>
-
-    </table>
+     
     <div style="margin-left: auto; margin-right: auto; text-align: center;">
         
     <asp:Label ID="Label3" runat="server" Text="VIEW ORDERS" CssClass="declarePage"></asp:Label>
@@ -26,6 +20,13 @@
             </div>
     <form id="form1" runat="server">
     <div style="height: 155px">
+        <table>
+          <tr>
+            <td><asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
+            </td>
+          </tr>
+
+    </table>
     
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" class="login" AutoGenerateColumns="False" DataKeyNames="SalesOrderID" DataSourceID="SqlDataSource1">
             <Columns>
