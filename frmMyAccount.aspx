@@ -57,7 +57,13 @@
         </asp:GridView>
         <asp:SqlDataSource ID="Accounts_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT Users.UserLogon, Customer.*, Address.*
 FROM Address INNER JOIN (Users INNER JOIN Customer ON Users.UserID = Customer.UserID) ON Address.AddressID = Customer.AddressID
-            WHERE (((Users.UserLogon)='a name goes here'))"></asp:SqlDataSource>
+            WHERE (((Users.UserLogon)=@CustID))">
+            <SelectParameters>
+                <asp:SessionParameter Name="CustID" SessionField="UserNameID" DefaultValue="0" />
+
+            </SelectParameters>
+
+        </asp:SqlDataSource>
     </form>
 </body>
 </html>
