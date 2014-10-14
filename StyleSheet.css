@@ -103,4 +103,5 @@ a:visited{
 .fromTop{
     position: relative;
     top: 150px;
+    left: -1px;
 }
