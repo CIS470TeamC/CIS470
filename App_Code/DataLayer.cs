@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*--------------------------------------------
+Program name: Williams Specialty Company (WSC)
+eCommerce Web Site
+Developer: Daniel Patterson, Andrew Kalman, Christopher Knight, Cody Roberts, Kevin Borja
+Date Written: September 1, 2014
+Purpose: Williams Specialty Company (WSC) has requested an eCommerce Web Site that can be 
+ * used by the customer to input order information. They are also requesting that their entire 
+ * catalog be published to this website for customers to view online. The website will provide a good 
+ * foundation for WSC to establish a web presence with their new/existing customers.
+--------------------------------------------*/
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
