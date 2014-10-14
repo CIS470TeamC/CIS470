@@ -37,7 +37,19 @@
 
 
 
-
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ProdID" DataSourceID="Catalog_DB">
+            <Columns>
+                <asp:BoundField DataField="ProdID" HeaderText="ProdID" InsertVisible="False" ReadOnly="True" SortExpression="ProdID" />
+                <asp:BoundField DataField="ProdName" HeaderText="ProdName" SortExpression="ProdName" />
+                <asp:BoundField DataField="ProdDescription" HeaderText="ProdDescription" SortExpression="ProdDescription" />
+                <asp:ImageField DataImageUrlField="ProdImage" DataImageUrlFormatString="~\Images\{0}_thumb.jpg">
+                </asp:ImageField>
+                <asp:BoundField DataField="JobType" HeaderText="JobType" SortExpression="JobType" />
+                <asp:BoundField DataField="MediaType" HeaderText="MediaType" SortExpression="MediaType" />
+                <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="Catalog_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
         <div style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 200px;">
         <asp:Button ID="btnCreateOrder" runat="server" Text="PLACE ORDER" CssClass="btn" PostBackUrl="~/frmCreateOrder.aspx" />
         </div>
