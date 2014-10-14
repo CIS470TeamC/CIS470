@@ -15,7 +15,7 @@ public partial class frmMyAccount : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["SecurityLevel"] == null)
+     /*   if (Session["SecurityLevel"] == null)
         {
             Response.Redirect("..\frmLogin.aspx");
         }
@@ -34,7 +34,7 @@ public partial class frmMyAccount : System.Web.UI.Page
             
         }
 
-        
+        */
     }
     protected void lbtnLogout_Click(object sender, EventArgs e)
     {
