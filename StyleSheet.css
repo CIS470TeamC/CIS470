@@ -99,3 +99,8 @@ a:visited{
     text-decoration: none;
 }
 /***End Link Styles***/
+
+.fromTop{
+    position: relative;
+    top: 150px;
+}

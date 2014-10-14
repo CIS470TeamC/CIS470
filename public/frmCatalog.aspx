@@ -25,7 +25,15 @@
     <form id="form1" runat="server">
     <div>
         
+        <table>
+          <tr>
+            <td><asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
+            </td>
+              <td><asp:LinkButton ID="lbtnMyAccount" runat="server" CssClass="topMenuRight" OnClick="lbtnMyAccount_Click">MY ACCOUNT</asp:LinkButton>
+            </td>
+          </tr>
 
+    </table>
 
 
 

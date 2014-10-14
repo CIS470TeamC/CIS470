@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Configuration;
 using System.Data.OleDb;
+using System.Data;
 
 /// <summary>
 /// Summary description for clsDataLayer
@@ -49,5 +50,29 @@ public class clsDataLayer
         return DS;
 
     }
+    
+    public static dsCustomers GetCustomer(string Database, string thisCustomer)
+    {
 
+        dsCustomers DS;
+        OleDbConnection sqlConn;
+        OleDbDataAdapter sqlDA;
+
+
+        sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
+
+
+        sqlDA = new OleDbDataAdapter("SELECT * FROM Users WHERE UserLogon = '" + thisCustomer + "'", sqlConn);
+        
+        DS = new dsCustomers();
+
+
+        sqlDA.Fill(DS.CustomerTable);
+
+
+        
+        return DS;
+    }
+
+    
 }

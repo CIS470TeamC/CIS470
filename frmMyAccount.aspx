@@ -27,8 +27,15 @@
           </tr>
 
     </table>
-    
+
+
+        
+
+
+
+
     </div>
+        <asp:GridView ID="grdThisCustomer" runat="server" HorizontalAlign="Center" CssClass="fromTop"></asp:GridView>
     </form>
 </body>
 </html>
