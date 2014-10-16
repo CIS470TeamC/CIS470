@@ -105,3 +105,15 @@ a:visited{
     top: 150px;
     left: -1px;
 }
+
+.gridCustomer {
+  
+    display:inline-block;
+    border: none;
+    margin-left: 25px;
+    font-size: 1.5em;
+    padding-left: 25px;
+}
+.gridColumn{
+    padding-left: 15px;
+}
