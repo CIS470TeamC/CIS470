@@ -21,5 +21,19 @@ public partial class _Default : System.Web.UI.Page
 
 
         }
+
+
+
+
+
+
+    }
+    protected void lbtnLogout_Click(object sender, EventArgs e)
+    {
+
+        Session["SecurityLevel"] = null;
+
+
+        Response.Redirect("public/default.aspx");
     }
 }

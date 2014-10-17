@@ -111,9 +111,12 @@ a:visited{
     display:inline-block;
     border: none;
     margin-left: 25px;
-    font-size: 1.5em;
     padding-left: 25px;
 }
 .gridColumn{
     padding-left: 15px;
+}
+.updateAcc{
+    position:relative;
+    top: 175px;
 }
