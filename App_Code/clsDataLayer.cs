@@ -62,28 +62,6 @@ public class clsDataLayer
 
     }
     
-    public static dsCustomers GetCustomer(string Database, string thisCustomer)
-    {
-
-        dsCustomers DS;
-        OleDbConnection sqlConn;
-        OleDbDataAdapter sqlDA;
-
-
-        sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
-
-
-        sqlDA = new OleDbDataAdapter("SELECT Users.UserLogon, Customer.*, Address.* FROM Address INNER JOIN (Users INNER JOIN Customer ON Users.UserID = Customer.UserID) ON Address.AddressID = Customer.AddressID WHERE (((Users.UserLogon)= '" + thisCustomer + "' ))", sqlConn);
-        
-        DS = new dsCustomers();
-
-
-        sqlDA.Fill(DS.Customer);
-
-
-        
-        return DS;
-    }
 
     
 }
