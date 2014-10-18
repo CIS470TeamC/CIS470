@@ -35,8 +35,9 @@
 
 
     </div>
-        <asp:GridView ID="GridView1" runat="server" cellpadding="10" horizontalalign="Center" AutoGenerateColumns="False" DataSourceID="Accounts_DB" CssClass="fromTop , gridCustomer" CellSpacing="5"  >
+<asp:GridView ID="GridView1" runat="server" cellpadding="10" horizontalalign="Center" AutoGenerateColumns="False" DataSourceID="Accounts_DB" CssClass="fromTop , gridCustomer" CellSpacing="5" >
             <Columns>
+                <asp:CommandField ShowEditButton="True"></asp:CommandField>
                 <asp:BoundField DataField="CFName"  ShowHeader="False" SortExpression="CFName" />
                 <asp:BoundField DataField="CLName"  ShowHeader="False" SortExpression="CLName" />
                 <asp:BoundField DataField="CCType"  ShowHeader="False" SortExpression="CCType" />
@@ -49,7 +50,7 @@
         </asp:GridView>
         <asp:SqlDataSource ID="Accounts_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT Users.UserLogon, Customer.*, Address.*
 FROM Address INNER JOIN (Users INNER JOIN Customer ON Users.UserID = Customer.UserID) ON Address.AddressID = Customer.AddressID
-            WHERE (((Users.UserLogon)=@CustID))">
+            WHERE (((Users.UserLogon)=@CustID))" UpdateCommand="UPDATE Address SET Address.AddressLine1 = AddressLine1, Address.AddressLine2 =  AddressLine2, Address.City = City, Address.StateCode = StateCode, Address.PostalCode = PostalCode WHERE (((Users.UserLogon)=@CustID)) ">
             <SelectParameters>
                 <asp:SessionParameter Name="CustID" SessionField="UserNameID" DefaultValue="0" />
 

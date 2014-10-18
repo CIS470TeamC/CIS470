@@ -61,7 +61,74 @@ public class clsDataLayer
         return DS;
 
     }
-    
+    /*
+    public void UpdateAddress(string Address1, string Address2, string city, string state, string zip, string AddressID)
+    {
 
-    
+
+
+        try
+        {
+            HttpContext.Current.Session["UserNameID"] = AddressID;
+
+            // new connection
+            OleDbConnection sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
+            sqlConn.Open();
+
+            // new commands for connection
+            OleDbCommand oCommand = new OleDbCommand();
+            oCommand.Connection = sqlConn;
+            string stmt = "UPDATE Address SET AddressLine1 = @address1, " +
+            "City = @city, StateCode = @state, PostalCode = @zip" +
+            " WHERE (Users.AddressId = @id)";
+
+
+            OleDbParameter param;
+
+            param = new OleDbParameter();
+            param.ParameterName = "@Address1";
+            param.Value = Address1;
+            oCommand.Parameters.Add(param);
+
+            param = new OleDbParameter();
+            param.ParameterName = "@Address2";
+            param.Value = Address2;
+            oCommand.Parameters.Add(param);
+
+            param = new OleDbParameter();
+            param.ParameterName = "@city";
+            param.Value = city;
+            oCommand.Parameters.Add(param);
+
+            param = new OleDbParameter();
+            param.ParameterName = "@state";
+            param.Value = state;
+            oCommand.Parameters.Add(param);
+
+            param = new OleDbParameter();
+            param.ParameterName = "@zip";
+            param.Value = zip;
+            oCommand.Parameters.Add(param);
+
+            param = new OleDbParameter();
+            param.ParameterName = "@ID";
+            param.Value = AddressID;
+            oCommand.Parameters.Add(param);
+
+
+            oCommand.CommandText = stmt;
+            oCommand.CommandType = CommandType.Text;
+
+            oCommand.ExecuteNonQuery();
+
+            // closing connection
+            sqlConn.Close();
+
+        }
+        catch
+        {
+
+        }
+    }
+    */
 }
