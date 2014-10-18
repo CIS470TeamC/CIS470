@@ -25,13 +25,34 @@
     <form id="form1" runat="server">
     <div>
         
+        <table>
+          <tr>
+            <td><asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
+            </td>
+              <td><asp:LinkButton ID="lbtnMyAccount" runat="server" CssClass="topMenuRight" OnClick="lbtnMyAccount_Click">MY ACCOUNT</asp:LinkButton>
+            </td>
+          </tr>
 
+    </table>
 
 
 
 
         <div style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 200px;">
-        <asp:Button ID="btnCreateOrder" runat="server" Text="PLACE ORDER" CssClass="btn" PostBackUrl="~/frmCreateOrder.aspx" />
+        <asp:SqlDataSource ID="Catalog_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ProdID" DataSourceID="Catalog_DB">
+            <Columns>
+                <asp:BoundField DataField="ProdID" HeaderText="ProdID" InsertVisible="False" ReadOnly="True" SortExpression="ProdID" />
+                <asp:ImageField DataImageUrlField="ProdImage" DataImageUrlFormatString="~\Images\{0}_thumb.jpg">
+                </asp:ImageField>
+                <asp:BoundField DataField="ProdName" HeaderText="ProdName" SortExpression="ProdName" />
+                <asp:BoundField DataField="ProdDescription" HeaderText="ProdDescription" SortExpression="ProdDescription" />
+                <asp:BoundField DataField="JobType" HeaderText="JobType" SortExpression="JobType" />
+                <asp:BoundField DataField="MediaType" HeaderText="MediaType" SortExpression="MediaType" />
+                <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" DataFormatString="{0:C}" />
+            </Columns>
+        </asp:GridView>
+            <asp:Button ID="btnCreateOrder" runat="server" Text="PLACE ORDER" CssClass="btn" PostBackUrl="~/frmCreateOrder.aspx" />
         </div>
     </div>
     </form>
