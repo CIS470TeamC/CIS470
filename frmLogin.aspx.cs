@@ -44,6 +44,7 @@ public partial class frmLogin : System.Web.UI.Page
                     FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, false);
                     Session["SecurityLevel"] = 1;
                     Session["UserNameID"] = txtUserName.Text;
+                    Session["AddressID"] = User.Identity;
                     Response.Redirect("public/frmCatalog.aspx");
                     break;
                 case 2:

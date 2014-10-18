@@ -29,6 +29,7 @@ public class clsDataLayer
 		//
 	}
 
+
     public static string GetDataConnection()
     {
 
@@ -40,6 +41,7 @@ public class clsDataLayer
 
     }
 
+    #region Verify User
     public static dsUsers VerifyUser(string Database, string UserName, string UserPassword)
     {
         
@@ -61,74 +63,83 @@ public class clsDataLayer
         return DS;
 
     }
-    /*
-    public void UpdateAddress(string Address1, string Address2, string city, string state, string zip, string AddressID)
+#endregion
+
+    #region Update Account
+    public static bool UpdateAccount(string Database, string AddressID, string AddressLine1,
+                                         string AddressLine2, string City, string StateCode, string PostalCode)
     {
 
+        bool recordSaved;
 
+        // Declaring trnasaction object and initializing to NULL
+        OleDbTransaction myTransaction = null;
 
         try
         {
-            HttpContext.Current.Session["UserNameID"] = AddressID;
+            // Creating new DB connection object
+            OleDbConnection conn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;" +
+                                                       "Data Source=" + Database);
+            conn.Open();
+            OleDbCommand command = conn.CreateCommand();
+            string strSQL;
 
-            // new connection
-            OleDbConnection sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
-            sqlConn.Open();
+            // Beginning of transaction
+            myTransaction = conn.BeginTransaction();
+            command.Transaction = myTransaction;
 
-            // new commands for connection
-            OleDbCommand oCommand = new OleDbCommand();
-            oCommand.Connection = sqlConn;
-            string stmt = "UPDATE Address SET AddressLine1 = @address1, " +
-            "City = @city, StateCode = @state, PostalCode = @zip" +
-            " WHERE (Users.AddressId = @id)";
+            // SQL statement for inserting passed values
+            strSQL = "Insert into Address " +
+                 "(AddressLine1, AddressLine2, City, StateCode, PostalCode) values ('" +
+                 AddressID + "', '" + AddressLine1 + "', '" + AddressLine2 + "', '" + City + "', '" + StateCode + "', '" + PostalCode + "')";
 
+            // Contains the text of the SQL query above in text
+            command.CommandType = CommandType.Text;
+            command.CommandText = strSQL;
 
-            OleDbParameter param;
+            // Queries against the DB and returns rows affected
+            command.ExecuteNonQuery();
 
-            param = new OleDbParameter();
-            param.ParameterName = "@Address1";
-            param.Value = Address1;
-            oCommand.Parameters.Add(param);
+            // SQL statement for updating the specified columns with passed values
+            strSQL = "Update Address " +
+                     "Set AddressID=" + AddressID + ", " +
+                     "AddressLine1='" + AddressLine1 + "', " +
+                     "AddressLine2='" + AddressLine2 + "' " +
+                     "City='" + City + "' " +
+                     "StateCode='" + StateCode + "' " +
+                     "PostalCode='" + PostalCode + "' " +
+                     "Where (((Users.UserLogon)=@CustID)))";
 
-            param = new OleDbParameter();
-            param.ParameterName = "@Address2";
-            param.Value = Address2;
-            oCommand.Parameters.Add(param);
+            // Contains the text of the SQL query above in text
+            command.CommandType = CommandType.Text;
+            command.CommandText = strSQL;
 
-            param = new OleDbParameter();
-            param.ParameterName = "@city";
-            param.Value = city;
-            oCommand.Parameters.Add(param);
+            // Queries against the DB and returns rows affected
+            command.ExecuteNonQuery();
 
-            param = new OleDbParameter();
-            param.ParameterName = "@state";
-            param.Value = state;
-            oCommand.Parameters.Add(param);
+            // Saving the transaction with a COMMIT statement
+            myTransaction.Commit();
 
-            param = new OleDbParameter();
-            param.ParameterName = "@zip";
-            param.Value = zip;
-            oCommand.Parameters.Add(param);
-
-            param = new OleDbParameter();
-            param.ParameterName = "@ID";
-            param.Value = AddressID;
-            oCommand.Parameters.Add(param);
-
-
-            oCommand.CommandText = stmt;
-            oCommand.CommandType = CommandType.Text;
-
-            oCommand.ExecuteNonQuery();
-
-            // closing connection
-            sqlConn.Close();
-
+            // Closing the connection
+            conn.Close();
+            recordSaved = true;
         }
-        catch
+        catch (Exception ex)
         {
 
+            // Rollback of transaction if validation is not passed
+            myTransaction.Rollback();
+
+            recordSaved = false;
+
         }
+
+        return recordSaved;
     }
-    */
+
+
+
+
+
+    #endregion
 }
