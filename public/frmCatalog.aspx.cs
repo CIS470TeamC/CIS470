@@ -11,5 +11,18 @@ public partial class frmCatalog : System.Web.UI.Page
     {
 
     }
+
+    protected void lbtnMyAccount_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/frmMyAccount.aspx");
+    }
+    protected void lbtnLogout_Click(object sender, EventArgs e)
+    {
+
+        Session["SecurityLevel"] = null;
+
+
+        Response.Redirect("public/default.aspx");
+    }
     
 }
