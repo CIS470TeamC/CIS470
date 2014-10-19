@@ -45,7 +45,7 @@
             ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
             SelectCommand="SELECT [OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue], [CustID] FROM [PurchaseOrderForm]" 
             DeleteCommand="DELETE FROM [PurchaseOrderForm] WHERE [OrderID] = ?" 
-            InsertCommand="INSERT INTO [PurchaseOrderForm] ([PayOnDel], [Status], [OrderDate], [TotalDue], [CustID]) VALUES (?, ?, ?, ?, ?)" 
+            InsertCommand="INSERT INTO [PurchaseOrderForm] ([CustID], [PayOnDel], [Status], [OrderDate], [TotalDue]) VALUES (?, ?, ?, ?, ?)" 
             UpdateCommand="UPDATE [PurchaseOrderForm] SET [PayOnDel] = ?, [Status] = ?, [OrderDate] = ?, [TotalDue] = ?, [CustID] = ? WHERE [OrderID] = ?" >
             <DeleteParameters>
                 <asp:Parameter Name="OrderID" Type="Int32" />
@@ -55,14 +55,14 @@
                 <asp:Parameter Name="PayOnDel" Type="Boolean" />
                 <asp:Parameter Name="Status" Type="String" />
                 <asp:Parameter Name="OrderDate" Type="String" />
-                <asp:Parameter Name="TotalDue" Type="Decimal" />
+                <asp:Parameter Name="TotalDue" Type="Int32" />
                 <asp:Parameter Name="CustID" Type="Int32" />
             </InsertParameters>
             <UpdateParameters>
                 <asp:Parameter Name="PayOnDel" Type="Boolean" />
                 <asp:Parameter Name="Status" Type="String" />
                 <asp:Parameter Name="OrderDate" Type="String" />
-                <asp:Parameter Name="TotalDue" Type="Decimal" />
+                <asp:Parameter Name="TotalDue" Type="Int32" />
                 <asp:Parameter Name="CustID" Type="Int32" />
                 <asp:Parameter Name="OrderID" Type="Int32" />
             </UpdateParameters>
