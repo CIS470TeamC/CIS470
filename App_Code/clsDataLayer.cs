@@ -65,6 +65,25 @@ public class clsDataLayer
     }
 #endregion
 
+    #region Address Info
+
+    public static dsCustomers GetAddressInfo(string Database, string UserLogon)
+    {
+        dsCustomers DS;
+        OleDbConnection sqlConn;
+        OleDbDataAdapter sqlDA;
+
+
+        sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
+
+        sqlDA = new OleDbDataAdapter("SELECT Customer.* FROM Users INNER JOIN Customer ON Users.UserID = Customer.UserID WHERE (((Users.UserLogon)= '" + UserLogon + "'))" , sqlConn);
+
+        DS = new dsCustomers();
+        sqlDA.Fill(DS.Customer);
+        return DS;
+    }
+    #endregion
+
     #region Update Account
     public static bool UpdateAccount(string Database, string AddressID, string AddressLine1,
                                          string AddressLine2, string City, string StateCode, string PostalCode)

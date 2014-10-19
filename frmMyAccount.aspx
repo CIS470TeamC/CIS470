@@ -36,7 +36,12 @@
 
     </div>
 
-        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" DeleteCommand="DELETE FROM [Address] WHERE [AddressID] = ?" InsertCommand="INSERT INTO [Address] ([AddressID], [AddressLine1], [AddressLine2], [City], [StateCode], [PostalCode]) VALUES (?, ?, ?, ?, ?, ?)" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Address]" UpdateCommand="UPDATE [Address] SET [AddressLine1] = ?, [AddressLine2] = ?, [City] = ?, [StateCode] = ?, [PostalCode] = ? WHERE [AddressID] = ?">
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
+            DeleteCommand="DELETE FROM [Address] WHERE [AddressID] = ?" 
+            InsertCommand="INSERT INTO [Address] ([AddressID], [AddressLine1], [AddressLine2], [City], [StateCode], [PostalCode]) VALUES (?, ?, ?, ?, ?, ?)" 
+            ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
+            SelectCommand="SELECT * FROM [Address] WHERE [AddressID] = @AddressID" 
+            UpdateCommand="UPDATE [Address] SET [AddressLine1] = ?, [AddressLine2] = ?, [City] = ?, [StateCode] = ?, [PostalCode] = ? WHERE [AddressID] = ?">
             <DeleteParameters>
                 <asp:Parameter Name="AddressID" Type="Int32" />
             </DeleteParameters>
@@ -48,6 +53,9 @@
                 <asp:Parameter Name="StateCode" Type="String" />
                 <asp:Parameter Name="PostalCode" Type="String" />
             </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="AddressID" SessionField="AddressID" />
+            </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="AddressLine1" Type="String" />
                 <asp:Parameter Name="AddressLine2" Type="String" />

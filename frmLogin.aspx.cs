@@ -19,6 +19,7 @@ public partial class frmLogin : System.Web.UI.Page
 
 
         dsUsers dsUserLogin;
+        dsCustomers dsCustomerInfo;
         
 
         dsUserLogin = clsDataLayer.VerifyUser(Server.MapPath("SiteDB.accdb"), txtUserName.Text, txtPassword.Text);
@@ -44,7 +45,9 @@ public partial class frmLogin : System.Web.UI.Page
                     FormsAuthentication.RedirectFromLoginPage(txtUserName.Text, false);
                     Session["SecurityLevel"] = 1;
                     Session["UserNameID"] = txtUserName.Text;
-                    Session["AddressID"] = User.Identity;
+                    dsCustomerInfo = clsDataLayer.GetAddressInfo(Server.MapPath("SiteDB.accdb"), txtUserName.Text);
+                    int AddressID = dsCustomerInfo.Customer[0].AddressID;
+                    Session["AddressID"] = AddressID;
                     Response.Redirect("public/frmCatalog.aspx");
                     break;
                 case 2:
