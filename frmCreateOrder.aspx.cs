@@ -23,4 +23,15 @@ public partial class frmCreateOrder : System.Web.UI.Page
 
         Response.Redirect("public/default.aspx");
     }
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        // Get the currently selected row using the SelectedRow property.
+        GridViewRow row = gvCurrentOrders.SelectedRow;
+
+        // Display the first name from the selected row.
+        // In this example, the third column (index 2) contains
+        // the first name.
+        Session["OrderID"] = row.Cells[1].Text;
+        testlabel.Text = Session["OrderID"].ToString();
+    }
 }
