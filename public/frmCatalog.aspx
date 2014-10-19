@@ -28,9 +28,7 @@
         <table>
           <tr>
               <td>
-                <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/frmLogin.aspx">
-                <asp:Label ID="lblLogin" runat="server" Text="LOGIN" CssClass="topMenuLeft"></asp:Label>
-                    </asp:HyperLink>
+                <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogin_Click">LOGIN</asp:LinkButton>
             </td>
               <td>
                   <asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
@@ -41,12 +39,12 @@
 
     </table>
 
+        <asp:Button ID="btnCreateOrder" runat="server" Text="PLACE ORDER" CssClass="btn , createBtn" PostBackUrl="~/frmCreateOrder.aspx" />
 
 
-
-        <div style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 200px;">
+        
         <asp:SqlDataSource ID="Catalog_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
-                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ProdID" DataSourceID="Catalog_DB">
+                <asp:GridView ID="GridView1" runat="server"  CssClass="containerItems" HorizontalAlign="Center" GridLines="None" cellspacing="15" AutoGenerateColumns="False" DataKeyNames="ProdID" DataSourceID="Catalog_DB">
             <Columns>
                 <asp:BoundField DataField="ProdID" HeaderText="ProdID" InsertVisible="False" ReadOnly="True" SortExpression="ProdID" />
                 <asp:ImageField DataImageUrlField="ProdImage" DataImageUrlFormatString="~\Images\{0}_thumb.jpg">
@@ -58,9 +56,9 @@
                 <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" DataFormatString="{0:C}" />
             </Columns>
         </asp:GridView>
-            <asp:Button ID="btnCreateOrder" runat="server" Text="PLACE ORDER" CssClass="btn" PostBackUrl="~/frmCreateOrder.aspx" />
+            
         </div>
-    </div>
+    
     </form>
 </body>
 </html>

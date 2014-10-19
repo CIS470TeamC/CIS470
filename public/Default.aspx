@@ -12,12 +12,15 @@
     <asp:HyperLink ID="Home" runat="server" NavigateUrl="Default.aspx">
     <img src="..\images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
-    <table>
+
+    
+    
+    <form id="form1" runat="server">
+            <table>
           <tr>
             <td>
-                <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/frmLogin.aspx">
-                <asp:Label ID="lblLogin" runat="server" Text="LOGIN" CssClass="topMenuLeft"></asp:Label>
-                    </asp:HyperLink>
+        <asp:LinkButton ID="lbtnLogin" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogin_Click">LOGIN</asp:LinkButton>
+
             </td>
               <td>
                   <asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
@@ -26,10 +29,6 @@
 
     </table>
 
-    
-    
-    <form id="form1" runat="server">
-        
     <div>
     
 

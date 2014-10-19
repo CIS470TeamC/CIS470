@@ -12,14 +12,15 @@
     <asp:HyperLink ID="Home" runat="server" NavigateUrl="~/public/Default.aspx">
     <img src="images/WSCLogo.png" class="logo"/>
     </asp:HyperLink>
-    <div style="margin-left: auto; margin-right: auto; text-align: center;">
-        
-    <asp:Label ID="Label3" runat="server" Text="LOGIN" CssClass="declarePage"></asp:Label>
-            
-            </div>
+   
    
     
     <form id="form1" runat="server">
+         
+        
+    <asp:Label ID="Label3" runat="server" Text="LOGIN" CssClass="declarePage"></asp:Label>
+            
+
     <div>
        <asp:Label ID="lblStatus" runat="server" Text="Please enter your Username and Password" CssClass="loginLblStatus"></asp:Label> 
     <table class="login" align="center">

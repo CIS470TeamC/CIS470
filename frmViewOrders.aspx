@@ -15,7 +15,7 @@
      
     <div style="margin-left: auto; margin-right: auto; text-align: center;">
         
-    <asp:Label ID="Label3" runat="server" Text="VIEW ORDERS" CssClass="declarePage"></asp:Label>
+    <asp:Label ID="Label3" runat="server" Text="VALIDATED ORDERS" CssClass="declarePage"></asp:Label>
             
             </div>
     <form id="form1" runat="server">
@@ -28,7 +28,7 @@
 
     </table>
 
-        <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="fromTop , gridCustomer">
+        <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="containerOrders" HorizontalAlign="Center" GridLines="None">
             <Columns>
                 <asp:BoundField DataField="SalesOrderID" HeaderText="  SalesOrder  " InsertVisible="False" SortExpression="SalesOrderID"></asp:BoundField>
                 <asp:BoundField DataField="PaidAmt" HeaderText="  Amt Paid  " SortExpression="PaidAmt"></asp:BoundField>

@@ -17,7 +17,7 @@ public partial class frmCatalog : System.Web.UI.Page
         else
         {
             lbtnLogout.Visible = true;
-            lblLogin.Visible = false;
+            lbtnLogin.Visible = false;
         }
     }
 
@@ -32,6 +32,10 @@ public partial class frmCatalog : System.Web.UI.Page
         Session["UserNameID"] = null;
         Session["AddressID"] = null;
         Response.Redirect("default.aspx");
+    }
+    protected void lbtnLogin_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/frmLogin.aspx");
     }
     
 }

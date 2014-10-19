@@ -9,7 +9,7 @@
     <title></title>
 </head>
 <body>
-    <asp:HyperLink ID="Home" runat="server" NavigateUrl="public\frmCatalog.aspx">
+    <asp:HyperLink ID="Home" runat="server" NavigateUrl="frmMyAccount.aspx">
     <img src="images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
      
@@ -35,7 +35,8 @@
 
 
     </div>
-
+        
+       
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
             DeleteCommand="DELETE FROM [Address] WHERE [AddressID] = ?" 
             InsertCommand="INSERT INTO [Address] ([AddressID], [AddressLine1], [AddressLine2], [City], [StateCode], [PostalCode]) VALUES (?, ?, ?, ?, ?, ?)" 
@@ -66,7 +67,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
 
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" cellspacing="15" DataKeyNames="AddressID" DataSourceID="SqlDataSource2" CssClass="fromTop , gridCustomer">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False"  GridLines="None" cellspacing="15" DataKeyNames="AddressID" DataSourceID="SqlDataSource2"  HorizontalAlign="Center"  CssClass="container1">
             <Columns>
                 <asp:CommandField ShowEditButton="True" EditText="Update"> <ControlStyle CssClass="btn" /></asp:CommandField>
                 <asp:BoundField DataField="AddressID" HeaderText="AddressID" InsertVisible="False" ReadOnly="True" SortExpression="AddressID" Visible="false" />
@@ -77,17 +78,17 @@
                 <asp:BoundField DataField="PostalCode" HeaderText=" Zip Code " SortExpression="PostalCode" />
             </Columns>
         </asp:GridView>
-
-
-
-
-
-
-
-
-
-
         
+
+
+
+
+
+
+
+
+
+     
         <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
             DeleteCommand="DELETE FROM [Customer] WHERE [UserID] = ?" 
             InsertCommand="INSERT INTO [Customer] ([CCNum], [CCExp], [CCPin], [CCType]) VALUES (?, ?, ?, ?)" 
@@ -116,7 +117,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
 
-        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="CustID" cellspacing="15" DataSourceID="SqlDataSource3" CssClass="gridCustomer , gridTwoMyAccount">
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" GridLines="None" DataKeyNames="CustID" cellspacing="15" DataSourceID="SqlDataSource3" HorizontalAlign="Center" CssClass="container2">
             <Columns>
                 <asp:CommandField ShowEditButton="True" EditText="Update" > <ControlStyle CssClass="btn" /></asp:CommandField>
                 <asp:BoundField DataField="CustID" HeaderText="CustID" InsertVisible="False" ReadOnly="True" SortExpression="CustID" Visible="false" />
@@ -133,20 +134,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="fromTop , gridCustomer">
+    
+        <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" GridLines="None"  AutoGenerateColumns="False" HorizontalAlign="Center" DataSourceID="SqlDataSource1" CssClass="container3">
             <Columns>
                 <asp:BoundField DataField="OrderDate" HeaderText="  OrderDate  " SortExpression="OrderDate"></asp:BoundField>
                 <asp:BoundField DataField="CFName" HeaderText="  First Name  " SortExpression="CFName"></asp:BoundField>

@@ -11,13 +11,13 @@ public partial class _Default : System.Web.UI.Page
     {
         if (Session["SecurityLevel"] == null || Session["UserNameID"] == null || Session["AddressID"] == null)
         {
-            lblLogin.Visible = true;
+            lbtnLogin.Visible = true;
             lbtnLogout.Visible = false;
         }
         else
         {
             lbtnLogout.Visible = true;
-            lblLogin.Visible = false;
+            lbtnLogin.Visible = false;
         }
 
 
@@ -33,5 +33,9 @@ public partial class _Default : System.Web.UI.Page
         Session["UserNameID"] = null;
         Session["AddressID"] = null;
         Response.Redirect("public/default.aspx");
+    }
+    protected void lbtnLogin_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/frmLogin.aspx");
     }
 }
