@@ -33,4 +33,12 @@ public partial class frmCreateOrder : System.Web.UI.Page
         // the first name.
         Session["OrderID"] = row.Cells[2].Text;
     }
+    protected void Insert(object sender, EventArgs e)
+    {
+        CurrentOrders.Insert();
+    }
+    protected void InsertLineItem(object sender, EventArgs e)
+    {
+        OrderLineItems.Insert();
+    }
 }
