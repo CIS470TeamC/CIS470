@@ -105,7 +105,7 @@
                 <asp:Parameter Name="CCType" Type="String" />
             </InsertParameters>
             <SelectParameters>
-                <asp:SessionParameter Name="AddressID" SessionField="AddressID" />
+                <asp:SessionParameter Name="CustID" SessionField="CustID" />
             </SelectParameters>
             <UpdateParameters>
                 <asp:Parameter Name="CCNum" Type="String" />
