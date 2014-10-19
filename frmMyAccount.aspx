@@ -69,7 +69,7 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="AddressID" DataSourceID="SqlDataSource2">
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
-                <asp:BoundField DataField="AddressID" HeaderText="AddressID" InsertVisible="False" ReadOnly="True" SortExpression="AddressID" />
+                <asp:BoundField DataField="AddressID" HeaderText="AddressID" InsertVisible="False" ReadOnly="True" SortExpression="AddressID" Visible="False" />
                 <asp:BoundField DataField="AddressLine1" HeaderText="AddressLine1" SortExpression="AddressLine1" />
                 <asp:BoundField DataField="AddressLine2" HeaderText="AddressLine2" SortExpression="AddressLine2" />
                 <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
@@ -77,6 +77,48 @@
                 <asp:BoundField DataField="PostalCode" HeaderText="PostalCode" SortExpression="PostalCode" />
             </Columns>
         </asp:GridView>
+
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataSourceID="CreditCard" DataKeyNames="CustID">
+            <Columns>
+                <asp:CommandField ShowEditButton="True" />
+                <asp:BoundField DataField="CustID" HeaderText="CustID" InsertVisible="False" ReadOnly="True" SortExpression="CustID" Visible="False" />
+                <asp:BoundField DataField="CFName" HeaderText="CFName" SortExpression="CFName" />
+                <asp:BoundField DataField="CLName" HeaderText="CLName" SortExpression="CLName" />
+                <asp:BoundField DataField="CCNum" HeaderText="CCNum" SortExpression="CCNum" />
+                <asp:BoundField DataField="CCExp" HeaderText="CCExp" SortExpression="CCExp" />
+                <asp:BoundField DataField="CCPin" HeaderText="CCPin" SortExpression="CCPin" />
+                <asp:BoundField DataField="CCType" HeaderText="CCType" SortExpression="CCType" />
+            </Columns>
+        </asp:GridView>
+        <asp:SqlDataSource ID="CreditCard" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
+            ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
+            SelectCommand="SELECT [CFName], [CLName], [CCNum], [CCExp], [CCPin], [CCType], [CustID] FROM [Customer]
+WHERE [CustID] = @CustID" DeleteCommand="DELETE FROM [Customer] WHERE [CustID] = ?" InsertCommand="INSERT INTO [Customer] ([CFName], [CLName], [CCNum], [CCExp], [CCPin], [CCType], [CustID]) VALUES (?, ?, ?, ?, ?, ?, ?)" UpdateCommand="UPDATE [Customer] SET [CFName] = ?, [CLName] = ?, [CCNum] = ?, [CCExp] = ?, [CCPin] = ?, [CCType] = ? WHERE [CustID] = ?">
+            <DeleteParameters>
+                <asp:Parameter Name="CustID" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="CFName" Type="String" />
+                <asp:Parameter Name="CLName" Type="String" />
+                <asp:Parameter Name="CCNum" Type="String" />
+                <asp:Parameter Name="CCExp" Type="DateTime" />
+                <asp:Parameter Name="CCPin" Type="String" />
+                <asp:Parameter Name="CCType" Type="String" />
+                <asp:Parameter Name="CustID" Type="Int32" />
+            </InsertParameters>
+                        <SelectParameters>
+                <asp:SessionParameter Name="CustID" SessionField="CustID" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="CFName" Type="String" />
+                <asp:Parameter Name="CLName" Type="String" />
+                <asp:Parameter Name="CCNum" Type="String" />
+                <asp:Parameter Name="CCExp" Type="DateTime" />
+                <asp:Parameter Name="CCPin" Type="String" />
+                <asp:Parameter Name="CCType" Type="String" />
+                <asp:Parameter Name="CustID" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
 
         <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="fromTop , gridCustomer">
             <Columns>

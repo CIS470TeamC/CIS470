@@ -46,7 +46,9 @@ public partial class frmLogin : System.Web.UI.Page
                     Session["SecurityLevel"] = 1;
                     Session["UserNameID"] = txtUserName.Text;
                     dsCustomerInfo = clsDataLayer.GetAddressInfo(Server.MapPath("SiteDB.accdb"), txtUserName.Text);
+                    int CustID = dsCustomerInfo.Customer[0].CustID;
                     int AddressID = dsCustomerInfo.Customer[0].AddressID;
+                    Session["CustID"] = CustID;
                     Session["AddressID"] = AddressID;
                     Response.Redirect("public/frmCatalog.aspx");
                     break;
