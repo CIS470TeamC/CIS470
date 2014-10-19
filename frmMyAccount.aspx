@@ -9,7 +9,7 @@
     <title></title>
 </head>
 <body>
-    <asp:HyperLink ID="Home" runat="server" NavigateUrl="frmCatalog.aspx">
+    <asp:HyperLink ID="Home" runat="server" NavigateUrl="public\Default.aspx">
     <img src="images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
      
@@ -35,35 +35,145 @@
 
 
     </div>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="Accounts_DB">
+
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
+            DeleteCommand="DELETE FROM [Address] WHERE [AddressID] = ?" 
+            InsertCommand="INSERT INTO [Address] ([AddressID], [AddressLine1], [AddressLine2], [City], [StateCode], [PostalCode]) VALUES (?, ?, ?, ?, ?, ?)" 
+            ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
+            SelectCommand="SELECT * FROM [Address] WHERE [AddressID] = @AddressID" 
+            UpdateCommand="UPDATE [Address] SET [AddressLine1] = ?, [AddressLine2] = ?, [City] = ?, [StateCode] = ?, [PostalCode] = ? WHERE [AddressID] = ?">
+            <DeleteParameters>
+                <asp:Parameter Name="AddressID" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="AddressID" Type="Int32" />
+                <asp:Parameter Name="AddressLine1" Type="String" />
+                <asp:Parameter Name="AddressLine2" Type="String" />
+                <asp:Parameter Name="City" Type="String" />
+                <asp:Parameter Name="StateCode" Type="String" />
+                <asp:Parameter Name="PostalCode" Type="String" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="AddressID" SessionField="AddressID" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="AddressLine1" Type="String" />
+                <asp:Parameter Name="AddressLine2" Type="String" />
+                <asp:Parameter Name="City" Type="String" />
+                <asp:Parameter Name="StateCode" Type="String" />
+                <asp:Parameter Name="PostalCode" Type="String" />
+                <asp:Parameter Name="AddressID" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" cellspacing="15" DataKeyNames="AddressID" DataSourceID="SqlDataSource2" CssClass="fromTop , gridCustomer">
             <Columns>
-                <asp:BoundField DataField="UserLogon" HeaderText="UserLogon" SortExpression="UserLogon" />
-                <asp:BoundField DataField="CustID" HeaderText="CustID" InsertVisible="False" SortExpression="CustID" />
-                <asp:BoundField DataField="CFName" HeaderText="CFName" SortExpression="CFName" />
-                <asp:BoundField DataField="CLName" HeaderText="CLName" SortExpression="CLName" />
-                <asp:BoundField DataField="CCNum" HeaderText="CCNum" SortExpression="CCNum" />
-                <asp:BoundField DataField="CCExp" HeaderText="CCExp" SortExpression="CCExp" />
-                <asp:BoundField DataField="CCPin" HeaderText="CCPin" SortExpression="CCPin" />
-                <asp:BoundField DataField="CCType" HeaderText="CCType" SortExpression="CCType" />
-                <asp:BoundField DataField="Customer.AddressID" HeaderText="Customer.AddressID" SortExpression="Customer.AddressID" />
-                <asp:BoundField DataField="UserID" HeaderText="UserID" SortExpression="UserID" />
-                <asp:BoundField DataField="Address.AddressID" HeaderText="Address.AddressID" InsertVisible="False" SortExpression="Address.AddressID" />
-                <asp:BoundField DataField="AddressLine1" HeaderText="AddressLine1" SortExpression="AddressLine1" />
-                <asp:BoundField DataField="AddressLine2" HeaderText="AddressLine2" SortExpression="AddressLine2" />
-                <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
-                <asp:BoundField DataField="StateCode" HeaderText="StateCode" SortExpression="StateCode" />
-                <asp:BoundField DataField="PostalCode" HeaderText="PostalCode" SortExpression="PostalCode" />
+                <asp:CommandField ShowEditButton="True" EditText="Update"> <ControlStyle CssClass="btn" /></asp:CommandField>
+                <asp:BoundField DataField="AddressID" HeaderText="AddressID" InsertVisible="False" ReadOnly="True" SortExpression="AddressID" Visible="false" />
+                <asp:BoundField DataField="AddressLine1" HeaderText=" Address " SortExpression="AddressLine1" />
+                <asp:BoundField DataField="AddressLine2" HeaderText=" Address 2 " SortExpression="AddressLine2" />
+                <asp:BoundField DataField="City" HeaderText=" City " SortExpression="City" />
+                <asp:BoundField DataField="StateCode" HeaderText=" State " SortExpression="StateCode" />
+                <asp:BoundField DataField="PostalCode" HeaderText=" Zip Code " SortExpression="PostalCode" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="Accounts_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT Users.UserLogon, Customer.*, Address.*
-FROM Address INNER JOIN (Users INNER JOIN Customer ON Users.UserID = Customer.UserID) ON Address.AddressID = Customer.AddressID
-            WHERE (((Users.UserLogon)=@CustID))">
+
+
+
+
+
+
+
+
+
+
+        
+        <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
+            DeleteCommand="DELETE FROM [Customer] WHERE [UserID] = ?" 
+            InsertCommand="INSERT INTO [Customer] ([CCNum], [CCExp], [CCPin], [CCType]) VALUES (?, ?, ?, ?)" 
+            ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
+            SelectCommand="SELECT * FROM [Customer] WHERE [CustID] = @CustID" 
+            UpdateCommand="UPDATE [Customer] SET [CCNum] = ?, [CCExp] = ?, [CCPin] = ?, [CCType] = ?">
+            <DeleteParameters>
+                <asp:Parameter Name="CustID" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="CustID" Type="Int32" />
+                <asp:Parameter Name="CCNum" Type="String" />
+                <asp:Parameter Name="CCExp" Type="String" />
+                <asp:Parameter Name="CCPin" Type="String" />
+                <asp:Parameter Name="CCType" Type="String" />
+            </InsertParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="AddressID" SessionField="AddressID" />
+            </SelectParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="CCNum" Type="String" />
+                <asp:Parameter Name="CCExp" Type="String" />
+                <asp:Parameter Name="CCPin" Type="String" />
+                <asp:Parameter Name="CCType" Type="String" />
+                <asp:Parameter Name="CustID" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
+
+        <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="CustID" cellspacing="15" DataSourceID="SqlDataSource3" CssClass="gridCustomer , gridTwoMyAccount">
+            <Columns>
+                <asp:CommandField ShowEditButton="True" EditText="Update" > <ControlStyle CssClass="btn" /></asp:CommandField>
+                <asp:BoundField DataField="CustID" HeaderText="CustID" InsertVisible="False" ReadOnly="True" SortExpression="CustID" Visible="false" />
+                <asp:BoundField DataField="CCNum" HeaderText=" Card Number " SortExpression="CCNum" />
+                <asp:BoundField DataField="CCExp" HeaderText=" Expiration Date " SortExpression="CCExp" />
+                <asp:BoundField DataField="CCPin" HeaderText="Card Pin " SortExpression="CCPin" />
+                <asp:BoundField DataField="CCType" HeaderText=" Card Type " SortExpression="CCType" />
+            </Columns>
+        </asp:GridView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="fromTop , gridCustomer">
+            <Columns>
+                <asp:BoundField DataField="OrderDate" HeaderText="  OrderDate  " SortExpression="OrderDate"></asp:BoundField>
+                <asp:BoundField DataField="CFName" HeaderText="  First Name  " SortExpression="CFName"></asp:BoundField>
+                <asp:BoundField DataField="CLName" HeaderText="  Last Name  " SortExpression="CLName"></asp:BoundField>
+                <asp:BoundField DataField="SalesOrderID" HeaderText="  SalesOrder  " InsertVisible="False" SortExpression="SalesOrderID"></asp:BoundField>
+                <asp:BoundField DataField="ProdID" HeaderText="  ProdID  " SortExpression="ProdID"></asp:BoundField>
+                <asp:BoundField DataField="OrderQty" HeaderText="  Qty  " SortExpression="OrderQty"></asp:BoundField>
+                <asp:CheckBoxField DataField="PayOnDel" HeaderText="  PayOnDel  " SortExpression="PayOnDel"></asp:CheckBoxField>
+                <asp:BoundField DataField="TotalDue" HeaderText="  TotalDue  " SortExpression="TotalDue"></asp:BoundField>
+                <asp:BoundField DataField="PaidAmt" HeaderText="  Amt Paid  " SortExpression="PaidAmt"></asp:BoundField>
+                <asp:BoundField DataField="RemainingAmt" HeaderText="  Remaining Amt  " SortExpression="RemainingAmt"></asp:BoundField>    
+            </Columns>
+        </asp:GridView>
+
+
+        <asp:SqlDataSource runat="server" ID="SqlDataSource1" ConnectionString='<%$ ConnectionStrings:SiteDBConnectionString %>' ProviderName='<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>' 
+            SelectCommand="SELECT SalesOrderForm.*, PurchaseOrderDetail.*, Customer.*, Users.*, PurchaseOrderForm.* FROM ((((SalesOrderForm INNER JOIN PurchaseOrderForm ON SalesOrderForm.OrderID = PurchaseOrderForm.OrderID) INNER JOIN PurchaseOrderDetail ON PurchaseOrderForm.OrderID = PurchaseOrderDetail.OrderID) INNER JOIN Customer ON SalesOrderForm.CustID = Customer.CustID AND PurchaseOrderForm.CustID = Customer.CustID) INNER JOIN Users ON Customer.UserID = Users.UserID) WHERE (((Users.UserLogon)=@CustID))">
             <SelectParameters>
                 <asp:SessionParameter Name="CustID" SessionField="UserNameID" DefaultValue="0" />
 
             </SelectParameters>
-
         </asp:SqlDataSource>
+
+
+
+
+
     </form>
 </body>
 </html>

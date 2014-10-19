@@ -29,6 +29,7 @@ public class clsDataLayer
 		//
 	}
 
+
     public static string GetDataConnection()
     {
 
@@ -40,6 +41,7 @@ public class clsDataLayer
 
     }
 
+    #region Verify User
     public static dsUsers VerifyUser(string Database, string UserName, string UserPassword)
     {
         
@@ -61,10 +63,12 @@ public class clsDataLayer
         return DS;
 
     }
-    
-    public static dsCustomers GetCustomer(string Database, string thisCustomer)
-    {
+#endregion
 
+    #region Address Info
+
+    public static dsCustomers GetAddressInfo(string Database, string UserLogon)
+    {
         dsCustomers DS;
         OleDbConnection sqlConn;
         OleDbDataAdapter sqlDA;
@@ -72,18 +76,15 @@ public class clsDataLayer
 
         sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
 
+        sqlDA = new OleDbDataAdapter("SELECT Customer.* FROM Users INNER JOIN Customer ON Users.UserID = Customer.UserID WHERE (((Users.UserLogon)= '" + UserLogon + "'))" , sqlConn);
 
-        sqlDA = new OleDbDataAdapter("SELECT Users.UserLogon, Customer.*, Address.* FROM Address INNER JOIN (Users INNER JOIN Customer ON Users.UserID = Customer.UserID) ON Address.AddressID = Customer.AddressID WHERE (((Users.UserLogon)= '" + thisCustomer + "' ))", sqlConn);
-        
         DS = new dsCustomers();
-
-
         sqlDA.Fill(DS.Customer);
-
-
-        
         return DS;
     }
+    #endregion
 
-    
+
+
+   
 }

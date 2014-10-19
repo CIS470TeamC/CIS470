@@ -59,6 +59,7 @@
 
 /*Buttons Styling*/
 .btn{
+    color: #000000;
     font-size:1em;
     border: solid 2px;
     border-radius:15px;
@@ -67,7 +68,7 @@
     background-color:#c1bdbd;
 }
 .btn:hover{
-
+    color: #000000;
     background-color:#808080;
 }
 /*End Buttons Styling*/
@@ -104,4 +105,19 @@ a:visited{
     position: relative;
     top: 150px;
     left: -1px;
+}
+
+.gridCustomer {
+  
+    display:inline-block;
+    border: none;
+    margin-left: 25px;
+    padding-left: 25px;
+}
+.gridColumn{
+    padding-left: 15px;
+}
+.gridTwoMyAccount{
+    position:relative;
+    top: 150px;
 }
