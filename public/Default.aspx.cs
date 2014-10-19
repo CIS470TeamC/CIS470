@@ -9,17 +9,15 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["SecurityLevel"] == null) 
+        if (Session["SecurityLevel"] == null || Session["UserNameID"] == null || Session["AddressID"] == null)
         {
-            lblLogout.Visible = false;
-        
+            lblLogin.Visible = true;
+            lbtnLogout.Visible = false;
         }
         else
         {
-
+            lbtnLogout.Visible = true;
             lblLogin.Visible = false;
-
-
         }
 
 
@@ -32,8 +30,8 @@ public partial class _Default : System.Web.UI.Page
     {
 
         Session["SecurityLevel"] = null;
-
-
+        Session["UserNameID"] = null;
+        Session["AddressID"] = null;
         Response.Redirect("public/default.aspx");
     }
 }

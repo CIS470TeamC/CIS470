@@ -27,7 +27,8 @@ public partial class frmMyAccount : System.Web.UI.Page
     {
 
         Session["SecurityLevel"] = null;
-
+        Session["UserNameID"] = null;
+        Session["AddressID"] = null;
 
         Response.Redirect("public/default.aspx");
         

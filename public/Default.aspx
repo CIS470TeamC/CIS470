@@ -20,9 +20,7 @@
                     </asp:HyperLink>
             </td>
               <td>
-                  <asp:HyperLink ID="Logout" runat="server" NavigateUrl="~/public/Default.aspx">
-                  <asp:Label ID="lblLogout" runat="server" Text="LOGOUT" CssClass="topMenuLeft"></asp:Label>
-                      </asp:HyperLink>
+                  <asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
               </td>
           </tr>
 

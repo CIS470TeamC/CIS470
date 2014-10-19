@@ -9,7 +9,7 @@
     <title></title>
 </head>
 <body>
-    <asp:HyperLink ID="Home" runat="server" NavigateUrl="public\Default.aspx">
+    <asp:HyperLink ID="Home" runat="server" NavigateUrl="public\frmCatalog.aspx">
     <img src="images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
      

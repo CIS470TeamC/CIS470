@@ -27,8 +27,14 @@
         
         <table>
           <tr>
-            <td><asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
+              <td>
+                <asp:HyperLink ID="Login" runat="server" NavigateUrl="~/frmLogin.aspx">
+                <asp:Label ID="lblLogin" runat="server" Text="LOGIN" CssClass="topMenuLeft"></asp:Label>
+                    </asp:HyperLink>
             </td>
+              <td>
+                  <asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
+              </td>
               <td><asp:LinkButton ID="lbtnMyAccount" runat="server" CssClass="topMenuRight" OnClick="lbtnMyAccount_Click">MY ACCOUNT</asp:LinkButton>
             </td>
           </tr>
