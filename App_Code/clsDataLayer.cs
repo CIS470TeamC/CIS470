@@ -83,8 +83,19 @@ public class clsDataLayer
         return DS;
     }
     #endregion
+    /*
+    #region Create Blank Record
 
+    public static void newOrder()
+    {
+        OleDbConnection sqlConn;
+        OleDbDataAdapter sqlDA;
 
+        sqlConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\TestingDB.accdb;Persist Security Info=True");
 
-   
+        sqlDA = new OleDbDataAdapter("INSERT INTO Dummy (ID,SomeField,AnotherField) VALUES ('1','1','1')", sqlConn);
+
+    }
+    #endregion  
+    */
 }

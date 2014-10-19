@@ -29,23 +29,41 @@
     </table>
     
     </div>
-        <asp:GridView ID="gvCurrentOrders" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
+        <asp:GridView ID="gvCurrentOrders" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" OnSelectedIndexChanged="gvCurrentOrders_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="CustID" HeaderText="CustID" SortExpression="CustID" />
                 <asp:BoundField DataField="OrderID" HeaderText="OrderID" InsertVisible="False" ReadOnly="True" SortExpression="OrderID" />
                 <asp:CheckBoxField DataField="PayOnDel" HeaderText="PayOnDel" SortExpression="PayOnDel" />
                 <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
                 <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
                 <asp:BoundField DataField="TotalDue" HeaderText="TotalDue" SortExpression="TotalDue" />
-                <asp:BoundField DataField="CustID" HeaderText="CustID" SortExpression="CustID" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="CurrentOrders" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [PurchaseOrderForm] WHERE [CustID] = @CustID">
-            <SelectParameters>
-                <asp:SessionParameter Name="CustID" SessionField="CustID" />
-            </SelectParameters>
+        <asp:SqlDataSource ID="CurrentOrders" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
+            ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
+            SelectCommand="SELECT [OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue], [CustID] FROM [PurchaseOrderForm]" DeleteCommand="DELETE FROM [PurchaseOrderForm] WHERE [OrderID] = ?" InsertCommand="INSERT INTO [PurchaseOrderForm] ([OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue], [CustID]) VALUES (?, ?, ?, ?, ?, ?)" UpdateCommand="UPDATE [PurchaseOrderForm] SET [PayOnDel] = ?, [Status] = ?, [OrderDate] = ?, [TotalDue] = ?, [CustID] = ? WHERE [OrderID] = ?" >
+            <DeleteParameters>
+                <asp:Parameter Name="OrderID" Type="Int32" />
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="OrderID" Type="Int32" />
+                <asp:Parameter Name="PayOnDel" Type="Boolean" />
+                <asp:Parameter Name="Status" Type="String" />
+                <asp:Parameter Name="OrderDate" Type="String" />
+                <asp:Parameter Name="TotalDue" Type="Decimal" />
+                <asp:Parameter Name="CustID" Type="Int32" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="PayOnDel" Type="Boolean" />
+                <asp:Parameter Name="Status" Type="String" />
+                <asp:Parameter Name="OrderDate" Type="String" />
+                <asp:Parameter Name="TotalDue" Type="Decimal" />
+                <asp:Parameter Name="CustID" Type="Int32" />
+                <asp:Parameter Name="OrderID" Type="Int32" />
+            </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:Label runat="server" ID="testlabel"></asp:Label>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID,OrderDetailID" DataSourceID="OrderLineItems" style="margin-bottom: 1px">
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
@@ -81,6 +99,17 @@
                 <asp:Parameter Name="OrderDetailID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
+        <asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" Height="50px" Width="125px">
+            <Fields>
+                <asp:BoundField DataField="CustID" HeaderText="CustID" SortExpression="CustID" />
+                <asp:BoundField DataField="OrderID" HeaderText="OrderID" InsertVisible="False" ReadOnly="True" SortExpression="OrderID" />
+                <asp:CheckBoxField DataField="PayOnDel" HeaderText="PayOnDel" SortExpression="PayOnDel" />
+                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
+                <asp:BoundField DataField="TotalDue" HeaderText="TotalDue" SortExpression="TotalDue" />
+                <asp:CommandField ShowInsertButton="True" />
+            </Fields>
+        </asp:DetailsView>
     </form>
 </body>
 </html>
