@@ -37,13 +37,16 @@
                 <asp:CheckBoxField DataField="PayOnDel" HeaderText="PayOnDel" SortExpression="PayOnDel" />
                 <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
                 <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
-                <asp:BoundField DataField="TotalDue" HeaderText="TotalDue" SortExpression="TotalDue" />
+                <asp:BoundField DataField="TotalDue" HeaderText="TotalDue" SortExpression="Currency" />
             </Columns>
         </asp:GridView>
         <asp:SqlDataSource ID="CurrentOrders" runat="server" 
             ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
             ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-            SelectCommand="SELECT [OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue], [CustID] FROM [PurchaseOrderForm]" DeleteCommand="DELETE FROM [PurchaseOrderForm] WHERE [OrderID] = ?" InsertCommand="INSERT INTO [PurchaseOrderForm] ([OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue], [CustID]) VALUES (?, ?, ?, ?, ?, ?)" UpdateCommand="UPDATE [PurchaseOrderForm] SET [PayOnDel] = ?, [Status] = ?, [OrderDate] = ?, [TotalDue] = ?, [CustID] = ? WHERE [OrderID] = ?" >
+            SelectCommand="SELECT [OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue], [CustID] FROM [PurchaseOrderForm]" 
+            DeleteCommand="DELETE FROM [PurchaseOrderForm] WHERE [OrderID] = ?" 
+            InsertCommand="INSERT INTO [PurchaseOrderForm] ([PayOnDel], [Status], [OrderDate], [TotalDue], [CustID]) VALUES (?, ?, ?, ?, ?)" 
+            UpdateCommand="UPDATE [PurchaseOrderForm] SET [PayOnDel] = ?, [Status] = ?, [OrderDate] = ?, [TotalDue] = ?, [CustID] = ? WHERE [OrderID] = ?" >
             <DeleteParameters>
                 <asp:Parameter Name="OrderID" Type="Int32" />
             </DeleteParameters>
