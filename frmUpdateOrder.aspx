@@ -31,34 +31,55 @@
     </table>
     
     </div>
-        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
-            SelectCommand="SELECT SalesOrderForm.*, PurchaseOrderDetail.*, Customer.*, Users.*, PurchaseOrderForm.* FROM ((((SalesOrderForm INNER JOIN PurchaseOrderForm ON SalesOrderForm.OrderID = PurchaseOrderForm.OrderID) INNER JOIN PurchaseOrderDetail ON PurchaseOrderForm.OrderID = PurchaseOrderDetail.OrderID) INNER JOIN Customer ON SalesOrderForm.CustID = Customer.CustID AND PurchaseOrderForm.CustID = Customer.CustID) INNER JOIN Users ON Customer.UserID = Users.UserID)">
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>"
+            DeleteCommand="DELETE FROM [PurchaseOrderDetail] WHERE [OrderID] = ? AND [OrderDetailID] = ?"
+            InsertCommand="INSERT INTO [PurchaseOrderForm] ([Status]) VALUES (?)"
+            SelectCommand="SELECT PurchaseOrderDetail.OrderID, PurchaseOrderDetail.OrderDetailID, PurchaseOrderDetail.OrderQty, PurchaseOrderDetail.ProdID, PurchaseOrderForm.Status FROM (PurchaseOrderDetail INNER JOIN PurchaseOrderForm ON PurchaseOrderDetail.OrderID = PurchaseOrderForm.OrderID)"
+            UpdateCommand="UPDATE PurchaseOrderForm SET Status = ? WHERE (OrderID = ?)">
+            <DeleteParameters>
+                <asp:Parameter Name="OrderID" Type="Int32" />
+                <asp:Parameter Name="OrderDetailID" Type="Int32" />
+                <asp:Parameter Name="Status" Type="String"/>
+            </DeleteParameters>
+            <InsertParameters>
+                <asp:Parameter Name="Status" Type="String" />
+                <asp:Parameter Name="OrderID" Type="Int32" />
+            </InsertParameters>
+            <UpdateParameters>
+                <asp:Parameter Name="Status" Type="String" />
+                <asp:Parameter Name="OrderID" Type="Int32" />
+            </UpdateParameters>
         </asp:SqlDataSource>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
         <br />
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
             <Columns>
-                <asp:CommandField ShowEditButton="True" EditText="Update"> <ControlStyle CssClass="btn" /></asp:CommandField>
-                <asp:BoundField DataField="SalesOrderID" HeaderText="SalesOrderID" InsertVisible="False" SortExpression="SalesOrderID" />
-                <asp:BoundField DataField="PaidAmt" HeaderText="PaidAmt" SortExpression="PaidAmt" />
-                <asp:BoundField DataField="RemainingAmt" HeaderText="RemainingAmt" SortExpression="RemainingAmt" />
-                <asp:BoundField DataField="OrderQty" HeaderText="OrderQty" SortExpression="OrderQty" />
-                <asp:BoundField DataField="ProdID" HeaderText="ProdID" SortExpression="ProdID" />
-                <asp:BoundField DataField="CFName" HeaderText="CFName" SortExpression="CFName" />
-                <asp:BoundField DataField="CLName" HeaderText="CLName" SortExpression="CLName" />
-                <asp:CheckBoxField DataField="PayOnDel" HeaderText="PayOnDel" SortExpression="PayOnDel" />
-                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
-                <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
-                <asp:BoundField DataField="TotalDue" HeaderText="TotalDue" SortExpression="TotalDue" />
+                <asp:CommandField ShowEditButton="True" />
+                <asp:BoundField DataField="OrderID" HeaderText="OrderID" SortExpression="OrderID" ReadOnly="true" />
+                <asp:BoundField DataField="OrderDetailID" HeaderText="OrderDetailID" InsertVisible="False" ReadOnly="true" SortExpression="OrderDetailID" />
+                <asp:BoundField DataField="OrderQty" HeaderText="OrderQty" SortExpression="OrderQty" ReadOnly="true" />
+                <asp:BoundField DataField="ProdID" HeaderText="ProdID" SortExpression="ProdID" ReadOnly="true" />
+                <asp:TemplateField HeaderText="Status" SortExpression="Status">
+                    <EditItemTemplate>
+                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="Status" DataValueField="Status" SelectedValue='<%# Bind("Status") %>'>
+                        </asp:DropDownList>
+                    </EditItemTemplate>
+                    <ItemTemplate>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
+            <EmptyDataTemplate>
+                <asp:DropDownList ID="DropDownList1" runat="server" SelectedValue='<%# Eval("Status") %>'>
+                </asp:DropDownList>
+            </EmptyDataTemplate>
         </asp:GridView>
+        <br />
+        <br />
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT DISTINCT [Status] FROM [PurchaseOrderForm]"></asp:SqlDataSource>
+        <br />
+        <br />
+        <br />
+        <br />
     </form>
 </body>
 </html>
