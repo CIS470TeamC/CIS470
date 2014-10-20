@@ -84,7 +84,11 @@
 
 
 
-
+        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+        
+    <asp:Label ID="Label1" runat="server" Text="BILLING INFORMATION" CssClass="declarePage"></asp:Label>
+            
+            </div>
 
 
 
@@ -130,7 +134,11 @@
 
 
 
-
+        <div style="margin-left: auto; margin-right: auto; text-align: center;">
+        
+    <asp:Label ID="Label2" runat="server" Text="YOUR ORDERS" CssClass="declarePage"></asp:Label>
+            
+            </div>
 
 
 

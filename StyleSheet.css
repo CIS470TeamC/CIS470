@@ -95,7 +95,7 @@
 
 /*** Link Styles***/
 a:hover{
-    color:#808080;
+    color:#FFFFFF;
 }
 a:link{
     text-decoration: none;
@@ -127,6 +127,7 @@ a:visited{
     border-radius: 15px;
     position: static;
     margin-top: 50px;
+    margin-bottom:50px;
 }
 
 .container2{
@@ -143,6 +144,7 @@ a:visited{
     border-radius: 15px;
     position: static;
     margin-top: 50px;
+    margin-bottom:50px;
 }
 
 .container3{
