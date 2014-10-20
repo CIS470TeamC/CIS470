@@ -35,7 +35,7 @@
             DeleteCommand="DELETE FROM [PurchaseOrderDetail] WHERE [OrderID] = ? AND [OrderDetailID] = ?"
             InsertCommand="INSERT INTO [PurchaseOrderForm] ([Status]) VALUES (?)"
             SelectCommand="SELECT PurchaseOrderDetail.OrderID, PurchaseOrderDetail.OrderDetailID, PurchaseOrderDetail.OrderQty, PurchaseOrderDetail.ProdID, PurchaseOrderForm.Status FROM (PurchaseOrderDetail INNER JOIN PurchaseOrderForm ON PurchaseOrderDetail.OrderID = PurchaseOrderForm.OrderID)"
-            UpdateCommand="UPDATE PurchaseOrderForm SET Status = ? WHERE (OrderID = ?)">
+            UpdateCommand="UPDATE PurchaseOrderForm SET Status = @Status WHERE OrderID = @OrderID">
             <DeleteParameters>
                 <asp:Parameter Name="OrderID" Type="Int32" />
                 <asp:Parameter Name="OrderDetailID" Type="Int32" />
@@ -51,7 +51,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="OrderID">
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
                 <asp:BoundField DataField="OrderID" HeaderText="OrderID" SortExpression="OrderID" ReadOnly="true" />
