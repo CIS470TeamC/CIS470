@@ -17,13 +17,15 @@
     
     <form id="form1" runat="server">
          
-        
+        <br />
+        <br />
+        <div style="width: 100%; text-align:center;">
     <asp:Label ID="Label3" runat="server" Text="LOGIN" CssClass="declarePage"></asp:Label>
-            
+            </div>
 
     <div>
-       <asp:Label ID="lblStatus" runat="server" Text="Please enter your Username and Password" CssClass="loginLblStatus"></asp:Label> 
-    <table class="login" align="center">
+       
+    <table class="login">
     
           <tr>
             <td>
@@ -51,6 +53,9 @@
         <tr>
             <td>
                 <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn" OnClick="btnLogin_Click"/>
+            </td>
+            <td>
+                <asp:Label ID="lblStatus" runat="server" Text="" CssClass="loginLblStatus"></asp:Label>
             </td>
             
           </tr>

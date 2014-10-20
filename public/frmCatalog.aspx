@@ -12,14 +12,13 @@
     <asp:HyperLink ID="Home" runat="server" NavigateUrl="~/public/Default.aspx" >
     <img src="..\images/WSCLogo.png" class="logo" /></asp:HyperLink>
         
-        <div style="margin-left: auto; margin-right: auto; text-align: center;">
         
+        <div style="width: 100%; text-align:center;">
     <asp:Label ID="Label3" runat="server" Text="CATALOG" CssClass="declarePage"></asp:Label>
-            <br />
+           </div>
 
             
 
-            </div>
     
 
     <form id="form1" runat="server">
@@ -33,14 +32,16 @@
               <td>
                   <asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
               </td>
-              <td><asp:LinkButton ID="lbtnMyAccount" runat="server" CssClass="topMenuRight" OnClick="lbtnMyAccount_Click">MY ACCOUNT</asp:LinkButton>
-            </td>
+              <td>
+                  <div style="width: 100%; text-align:right;"><asp:LinkButton ID="lbtnMyAccount" runat="server" CssClass="topMenuRight" OnClick="lbtnMyAccount_Click">MY ACCOUNT</asp:LinkButton>
+           </div>
+                       </td>
           </tr>
 
     </table>
-
-        <asp:Button ID="btnCreateOrder" runat="server" Text="PLACE ORDER" CssClass="btn , createBtn" PostBackUrl="~/frmCreateOrder.aspx" />
-
+        <div style="width: 100%; text-align:center;">
+        <asp:Button ID="btnCreateOrder" runat="server" Text="PLACE ORDER" CssClass="btn , declarePage" PostBackUrl="~/frmCreateOrder.aspx" />
+        </div>
 
         
         <asp:SqlDataSource ID="Catalog_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>

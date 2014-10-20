@@ -31,7 +31,7 @@
 
     
 
-        <div style="margin-left: auto; margin-right: auto; text-align: center; margin-top: 200px;">
+        <div style="width: 100%; text-align:center;">
         <asp:Button ID="btnViewCatalog" runat="server" Text="CATALOG" CssClass="btn" PostBackUrl="~/public/frmCatalog.aspx" />
         </div>
 

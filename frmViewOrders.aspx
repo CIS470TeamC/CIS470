@@ -13,11 +13,11 @@
     <img src="images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
      
-    <div style="margin-left: auto; margin-right: auto; text-align: center;">
+ 
         
     <asp:Label ID="Label3" runat="server" Text="VALIDATED ORDERS" CssClass="declarePage"></asp:Label>
             
-            </div>
+
     <form id="form1" runat="server">
     <div style="height: 155px">
         <table>

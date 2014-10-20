@@ -29,7 +29,7 @@ public partial class frmLogin : System.Web.UI.Page
             //If not valid login redirect back to login page.
 
             
-            lblStatus.Text = ("Invalid Login! Please Try Again!");
+            lblStatus.Text = ("Invalid Login!");
 
             
         }

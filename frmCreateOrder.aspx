@@ -13,8 +13,7 @@
     <img src="images/WSCLogo.png" class="logo" />
     </asp:HyperLink>
      
-    <div style="margin-left: auto; margin-right: auto; text-align: center;">
-        
+    <div style="width: 100%; text-align:center;">
     <asp:Label ID="Label3" runat="server" Text="CREATE ORDER" CssClass="declarePage"></asp:Label>
             
             </div>

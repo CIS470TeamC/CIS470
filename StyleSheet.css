@@ -9,15 +9,11 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7d7e7d', endColorstr='#0e0e0e',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
     background-repeat:no-repeat;
     min-height:900px;
+    min-width:1100px;
 }
 /*Site Logo*/
 .logo{
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    top:15%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
+    margin-left:35%;
     width:auto;
     height:150px;    
 }
@@ -31,7 +27,7 @@
     color:#000000; 
     display:inline;
     margin-left: 25px;
-    position:relative;
+    position:absolute;
     top: 15px;
     
 }
@@ -40,22 +36,15 @@
     font-size:1.5em;
     color:#000000; 
     display:inline;
-    margin-left: 25px;
-    position:relative;
+    position:absolute;
     top: 15px;
-    left: 925px;
+    left:1150px;
 }
 .declarePage{
-
     color: #000000;
     font-size: 1.5em;
-    margin: 0;
-    position: absolute;
-    left: 50%;
-    top:35%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    width:auto;
+    position: static;
+    margin-top:25px;
 }
 /*End Link, Page Name, and Menu Placement*/
 
@@ -64,8 +53,10 @@
 
 /*Login Form*/
 .login{
-    position:relative;
-    top:300px;
+
+    margin-top:25px;
+    margin-left: 500px; 
+    margin-right: auto;
     font-size: 1.5em;    
     
 }
@@ -94,11 +85,6 @@
 /*Form Status*/
 .loginLblStatus{
     color: #ff0000;
-    font-size: 1em;
-    margin-bottom: 30px;
-    position: absolute;
-    top: 250px;
-    left: 550px;
 }
 /*End Form Status*/
 
@@ -137,9 +123,8 @@ a:visited{
     background-size: 100%;
     border: groove 5px;
     border-radius: 15px;
-    position: relative;
-    top:inherit;
-    margin-top: 225px;
+    position: static;
+    margin-top: 50px;
 }
 
 .container2{
@@ -154,8 +139,7 @@ a:visited{
     background-size: 100%;
     border: groove 5px;
     border-radius: 15px;
-    position: relative;
-    top:inherit;
+    position: static;
     margin-top: 50px;
 }
 
@@ -171,7 +155,7 @@ a:visited{
     background-size: 100%;
     border: groove 5px;
     border-radius: 15px;
-    position: relative;
+    position: static;
     top:inherit;
     margin-top: 50px;
 }
@@ -193,12 +177,12 @@ a:visited{
     margin-bottom:50px;
     border: groove 5px;
     border-radius: 15px;
-    position: relative;
-    top:inherit;
-    margin-top: 225px;
+    position: static;
+    margin-top:25px;
+ 
 }
 .createBtn{
-   position: absolute;
+   position: static;
    top: 45%;
    left: 52.5%;
    margin-top: -50px;
@@ -222,9 +206,8 @@ a:visited{
     margin-bottom:50px;
     border: groove 5px;
     border-radius: 15px;
-    position: relative;
-    top:inherit;
-    margin-top: 225px;
+    position: static;
+    margin-top: 25px;
 }
 /************************* 
     Home/Default Page*******/
