@@ -14,9 +14,9 @@
     </asp:HyperLink>
      
  
-        
+        <div style="width: 100%; text-align:center;">
     <asp:Label ID="Label3" runat="server" Text="VALIDATED ORDERS" CssClass="declarePage"></asp:Label>
-            
+            </div>
 
     <form id="form1" runat="server">
     <div style="height: 155px">
