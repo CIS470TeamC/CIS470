@@ -83,8 +83,4 @@ public class clsDataLayer
         return DS;
     }
     #endregion
-
-
-
-   
 }
