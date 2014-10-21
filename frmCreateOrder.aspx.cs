@@ -7,15 +7,16 @@ using System.Web.UI.WebControls;
 
 public partial class frmCreateOrder : System.Web.UI.Page
 {
+    // Public var used by gvOrderLineItems_RowDataBound to
+    // calculate order totals
+    int total = 0;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (Session["SecurityLevel"] == null)
         {
             Response.Redirect("frmLogin.aspx");
         }
-        // Set default product ID
-        Session["ProdID"] = 1;
-
     }
     protected void lbtnLogout_Click(object sender, EventArgs e)
     {
@@ -35,11 +36,8 @@ public partial class frmCreateOrder : System.Web.UI.Page
         // In this example, the third column (index 2) contains
         // the first name.
         Session["OrderID"] = row.Cells[1].Text;
-        lblTestVar.Text = Session["OrderID"].ToString();
         gvOrderLineItems.Visible = true;
         tblAddItems.Visible = true;
-        ddProductID.Items.Insert(0, new ListItem("Please select a country", ""));
-        //lbListPrice.SelectedIndex = 0;
     }
     protected void Insert(object sender, EventArgs e)
     {
@@ -48,12 +46,30 @@ public partial class frmCreateOrder : System.Web.UI.Page
     }
     protected void InsertLineItem(object sender, EventArgs e)
     {
-        Session["ProdTotal"] = Convert.ToInt32(txtQuantity.Text) * Convert.ToInt32(lbListPrice.Text);
+        Session["ProdTotal"] = clsDataLayer.CalculateTotal(txtQuantity.Text, lbListPrice.Text);
         OrderLineItems.Insert();
         
     }
     protected void ddProducts_SelectedIndexChanged(object sender, EventArgs e)
     {
         Session["ProdID"] = ddProductID.SelectedValue.ToString();
+    }
+    protected void gvOrderLineItems_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            Label lblqty = (Label)e.Row.FindControl("lblqty");
+            
+            int qty = Int32.Parse(lblqty.Text.Substring(1,lblqty.Text.Length-4));
+            
+            total = total + qty;
+        }
+        if (e.Row.RowType == DataControlRowType.Footer)
+        {
+            Label lblTotalqty = (Label)e.Row.FindControl("lblTotalqty");
+            lblTotalqty.Text = String.Format("{0:C}",total.ToString());
+        }
+        Session["OrderTotal"] = total;
+        CurrentOrders.Update();
     }
 }

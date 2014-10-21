@@ -83,4 +83,15 @@ public class clsDataLayer
         return DS;
     }
     #endregion
+    #region Calculate Total
+
+    public static int CalculateTotal(string quantity, string value)
+    {
+        int total;
+        int qty = int.Parse(quantity);
+        int val = int.Parse(value);
+        total = qty * val;
+        return total;
+    }
+    #endregion
 }
