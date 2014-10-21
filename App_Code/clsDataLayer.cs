@@ -83,21 +83,19 @@ public class clsDataLayer
         return DS;
     }
     #endregion
-    #region Calculate Order Total and Update Database
-    public static void DoSomething(string ProductID)
+    /*
+    #region Create Blank Record
+
+    public static void newOrder()
     {
-        dsProducts DS;
         OleDbConnection sqlConn;
         OleDbDataAdapter sqlDA;
 
-        sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
+        sqlConn = new OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\TestingDB.accdb;Persist Security Info=True");
 
-        sqlDA = new OleDbDataAdapter("SELECT * FROM Product WHERE ProdID = ;" + ProductID + "'", sqlConn);
+        sqlDA = new OleDbDataAdapter("INSERT INTO Dummy (ID,SomeField,AnotherField) VALUES ('1','1','1')", sqlConn);
 
-        DS = new dsProducts();
-        sqlDA.Fill(DS.Product);
-
-        
     }
-    #endregion
+    #endregion  
+    */
 }

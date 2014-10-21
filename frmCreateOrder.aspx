@@ -32,11 +32,12 @@
         <asp:GridView ID="gvCurrentOrders" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" OnSelectedIndexChanged="gvCurrentOrders_SelectedIndexChanged">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="OrderID" HeaderText="Order Number" InsertVisible="False" ReadOnly="True" SortExpression="OrderID" />
-                <asp:CheckBoxField DataField="PayOnDel" HeaderText="Pay on Delivery" SortExpression="PayOnDel" />
-                <asp:BoundField DataField="Status" HeaderText="Validated?" SortExpression="Status" />
-                <asp:BoundField DataField="OrderDate" HeaderText="Date Order Was Placed" SortExpression="OrderDate" />
-                <asp:BoundField DataField="TotalDue" HeaderText="Total Cost" SortExpression="Currency" DataFormatString="{0:c}" />
+                <asp:BoundField DataField="CustID" HeaderText="CustID" SortExpression="CustID" />
+                <asp:BoundField DataField="OrderID" HeaderText="OrderID" InsertVisible="False" ReadOnly="True" SortExpression="OrderID" />
+                <asp:CheckBoxField DataField="PayOnDel" HeaderText="PayOnDel" SortExpression="PayOnDel" />
+                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status" />
+                <asp:BoundField DataField="OrderDate" HeaderText="OrderDate" SortExpression="OrderDate" />
+                <asp:BoundField DataField="TotalDue" HeaderText="TotalDue" SortExpression="Currency" />
             </Columns>
         </asp:GridView>
         <table border="1" style="border-collapse: collapse">
@@ -49,7 +50,7 @@
         <asp:SqlDataSource ID="CurrentOrders" runat="server" 
             ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
             ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-            SelectCommand="SELECT [OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue] FROM [PurchaseOrderForm] WHERE [CustID] = @CustID" 
+            SelectCommand="SELECT [OrderID], [PayOnDel], [Status], [OrderDate], [TotalDue], [CustID] FROM [PurchaseOrderForm] WHERE [CustID] = @CustID" 
             DeleteCommand="DELETE FROM [PurchaseOrderForm] WHERE [OrderID] = ?" 
             InsertCommand="INSERT INTO [PurchaseOrderForm] ([CustID], [PayOnDel], [Status], [OrderDate], [TotalDue]) VALUES (?, ?, ?, ?, ?)" 
             UpdateCommand="UPDATE [PurchaseOrderForm] SET [PayOnDel] = ?, [Status] = ?, [OrderDate] = ?, [TotalDue] = ?, [CustID] = ? WHERE [OrderID] = ?" >
@@ -63,7 +64,7 @@
                 <asp:SessionParameter Name="CustID" SessionField="CustID" />
                 <asp:Parameter Name="PayOnDel" Type="Boolean" DefaultValue="FALSE" />
                 <asp:Parameter Name="Status" Type="String" DefaultValue="Not Validated" />
-                <asp:SessionParameter Name="OrderDate" SessionField="OrderDate" />
+                <asp:Parameter Name="OrderDate" Type="String" DefaultValue="Today" />
                 <asp:Parameter Name="TotalDue" Type="Int32" DefaultValue="0" />
                 
             </InsertParameters>
@@ -76,12 +77,13 @@
                 <asp:Parameter Name="OrderID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:GridView ID="gvOrderLineItems" runat="server" AutoGenerateColumns="False" DataSourceID="OrderLineItems" style="margin-bottom: 1px">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID,OrderDetailID" DataSourceID="OrderLineItems" style="margin-bottom: 1px">
             <Columns>
+                <asp:CommandField ShowEditButton="True" />
+                <asp:BoundField DataField="OrderID" HeaderText="OrderID" ReadOnly="True" SortExpression="OrderID" />
+                <asp:BoundField DataField="OrderDetailID" HeaderText="OrderDetailID" InsertVisible="False" ReadOnly="True" SortExpression="OrderDetailID" />
                 <asp:BoundField DataField="OrderQty" HeaderText="OrderQty" SortExpression="OrderQty" />
-                <asp:BoundField DataField="ProdName" HeaderText="ProdName" SortExpression="ProdName" />
-                <asp:BoundField DataField="ProdDescription" HeaderText="ProdDescription" SortExpression="ProdDescription" />
-                <asp:BoundField DataField="ListPrice" HeaderText="Unit Price" SortExpression="ListPrice" DataFormatString="{0:c}" />
+                <asp:BoundField DataField="ProdID" HeaderText="ProdID" SortExpression="ProdID" />
             </Columns>
             <EmptyDataTemplate>
                 There are no items in that purchase order, or there is no purchase order selected
@@ -92,7 +94,6 @@
                 <asp:TableCell>
                     <asp:Label runat="server" Text="Product ID:"></asp:Label>
                     <asp:TextBox runat="server" ID="txtProductID"></asp:TextBox>
-                    
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:Label runat="server" Text="Quantity:"></asp:Label>
@@ -104,14 +105,13 @@
 
             </asp:TableRow>
             
-        </asp:Table><asp:DropDownList runat="server" ID="ddProducts" DataSourceID="Products" DataTextField="ProdName" DataValueField="ProdID" OnSelectedIndexChanged="ddProducts_SelectedIndexChanged"></asp:DropDownList>
-        <asp:SqlDataSource ID="Products" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [ProdName], [ProdID], [ListPrice] FROM [Product]"></asp:SqlDataSource>
+        </asp:Table>
         <asp:SqlDataSource ID="OrderLineItems" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
             DeleteCommand="DELETE FROM [PurchaseOrderDetail] WHERE [OrderID] = ? AND [OrderDetailID] = ?" 
-            InsertCommand="INSERT INTO [PurchaseOrderDetail] ([OrderID], [OrderQty], [ProdID], [TotalCost]) VALUES (?, ?, ?, ?)" 
+            InsertCommand="INSERT INTO [PurchaseOrderDetail] ([OrderID], [OrderQty], [ProdID]) VALUES (?, ?, ?)" 
             ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-            SelectCommand="SELECT PurchaseOrderDetail.OrderQty, Product.ProdName, Product.ProdDescription, Product.ListPrice FROM (PurchaseOrderDetail INNER JOIN Product ON PurchaseOrderDetail.ProdID = Product.ProdID) WHERE (PurchaseOrderDetail.OrderID = @OrderID)" 
-            UpdateCommand="UPDATE [PurchaseOrderDetail] SET [OrderQty] = ?, [ProdID] = ?, [TotalCost] WHERE [OrderID] = ? AND [OrderDetailID] = ?">
+            SelectCommand="SELECT * FROM [PurchaseOrderDetail] WHERE [OrderID] = @OrderID" 
+            UpdateCommand="UPDATE [PurchaseOrderDetail] SET [OrderQty] = ?, [ProdID] = ? WHERE [OrderID] = ? AND [OrderDetailID] = ?">
             <DeleteParameters>
                 <asp:Parameter Name="OrderID" Type="Int32" />
                 <asp:Parameter Name="OrderDetailID" Type="Int32" />
@@ -120,7 +120,6 @@
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID"/>
                 <asp:ControlParameter ControlID="txtQuantity" Name="Quantity" Type="Int32" />
                 <asp:ControlParameter ControlID="txtProductID"  Name="ProductId" Type="Int32" />
-                <asp:SessionParameter Name="TotalCost" SessionField="TotalCost" />
             </InsertParameters>
             <SelectParameters>
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID" />
@@ -128,16 +127,10 @@
             <UpdateParameters>
                 <asp:Parameter Name="OrderQty" Type="Int32" />
                 <asp:Parameter Name="ProdID" Type="Int32" />
-                <asp:SessionParameter Name="TotalCost" SessionField="TotalCost" />
                 <asp:Parameter Name="OrderID" Type="Int32" />
                 <asp:Parameter Name="OrderDetailID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:Label runat="server" ID="CostValue" Text=""></asp:Label>
     </form>
-    Troubleshooting to show variables
-    REMOVE BEFORE FINAL!!!
-            <asp:Label ID="lblTestProd" runat="server"></asp:Label>
-
 </body>
 </html>

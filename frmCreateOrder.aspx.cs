@@ -27,27 +27,18 @@ public partial class frmCreateOrder : System.Web.UI.Page
     {
         // Get the currently selected row using the SelectedRow property.
         GridViewRow row = gvCurrentOrders.SelectedRow;
-        
+
         // Display the first name from the selected row.
         // In this example, the third column (index 2) contains
         // the first name.
-        Session["OrderID"] = row.Cells[1].Text;
+        Session["OrderID"] = row.Cells[2].Text;
     }
     protected void Insert(object sender, EventArgs e)
     {
-        Session["OrderDate"] = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
         CurrentOrders.Insert();
     }
     protected void InsertLineItem(object sender, EventArgs e)
     {
         OrderLineItems.Insert();
-        GridViewRow row = gvOrderLineItems.SelectedRow;
-        Session["TotalCost"] = row.Cells[7].Text;
-        
-    }
-    protected void ddProducts_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        Session["ProdID"] = ddProducts.SelectedValue.ToString();
-        lblTestProd.Text = Session["ProdID"].ToString();
     }
 }
