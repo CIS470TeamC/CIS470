@@ -297,3 +297,9 @@ a:visited{
     position: static;
     margin-top: 25px;
 }
+/************************* 
+    CreateOrder Page*******/
+.btnTable{
+    margin-left:auto;
+    margin-right:auto;
+}

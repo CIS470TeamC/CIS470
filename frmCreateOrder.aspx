@@ -28,7 +28,7 @@
     </table>
     
     </div>
-        <asp:GridView ID="gvCurrentOrders" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" OnSelectedIndexChanged="gvCurrentOrders_SelectedIndexChanged">
+        <asp:GridView ID="gvCurrentOrders" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" OnSelectedIndexChanged="gvCurrentOrders_SelectedIndexChanged" CssClass="containerOrders" CellSpacing="15" HorizontalAlign="Center" GridLines="none">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField DataField="OrderID" HeaderText="Order Number" InsertVisible="False" ReadOnly="True" SortExpression="OrderID" />
@@ -41,16 +41,16 @@
                             CommandName="SwapPOD" 
                             CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" 
                             Text='<%# Eval("PayOnDel") %>' 
-                            OnCommand="btnPayOnDel_Command"/>
+                            OnCommand="btnPayOnDel_Command" AutoPostBack="true" CssClass="btn"/>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
             <SelectedRowStyle BackColor="#CCCCCC" />
         </asp:GridView>
-        <table border="1" style="border-collapse: collapse">
+        <table border="1" style="border-collapse: collapse" class="btnTable">
     <tr>
         <td>
-            <asp:Button ID="btnAdd" runat="server" Text="Create New Purchase Order" OnClick="Insert" />
+            <asp:Button ID="btnAdd" runat="server" Text="Create New Purchase Order" OnClick="Insert" CssClass="btn" />
         </td>
     </tr>
 </table>
@@ -84,7 +84,7 @@
             ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
             SelectCommand="SELECT DISTINCT [PayOnDel] FROM [PurchaseOrderForm]" >
         </asp:SqlDataSource>
-        <asp:GridView ID="gvOrderLineItems" runat="server" AutoGenerateColumns="False" DataSourceID="OrderLineItems" style="margin-bottom: 1px" Visible="False" onrowdatabound="gvOrderLineItems_RowDataBound">
+        <asp:GridView ID="gvOrderLineItems" runat="server" AutoGenerateColumns="False" DataSourceID="OrderLineItems" style="margin-bottom: 1px" Visible="False" onrowdatabound="gvOrderLineItems_RowDataBound" CssClass="containerOrders" CellSpacing="15" HorizontalAlign="Center" GridLines="none">
             <Columns>
                 <asp:BoundField DataField="OrderQty" HeaderText="Quantity" SortExpression="OrderQty" />
                 <asp:BoundField DataField="ProdName" HeaderText="Name" SortExpression="ProdName" />
@@ -108,7 +108,7 @@
                 There are no items in that purchase order, or there is no purchase order selected
             </EmptyDataTemplate>
         </asp:GridView>
-        <asp:Table runat="server" Visible="false" ID="tblAddItems">
+        <asp:Table runat="server" Visible="false" ID="tblAddItems" CssClass="containerUpdateOrders" HorizontalAlign="Center">
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:Label runat="server" Text="Product ID:"></asp:Label>
@@ -123,7 +123,7 @@
                     <asp:TextBox runat="server" ID="txtQuantity" Width="25"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
-                    <asp:Button ID="addLineItem" runat="server" Text="Add Line Item" OnClick="InsertLineItem" />
+                    <asp:Button ID="addLineItem" runat="server" Text="Add Line Item" OnClick="InsertLineItem" CssClass="btn"/>
                 </asp:TableCell>
 
             </asp:TableRow>
@@ -159,7 +159,7 @@
                 <asp:ControlParameter Name="ProdID" ControlID="ddProductID" DefaultValue="1" />
             </SelectParameters>
         </asp:SqlDataSource>
-<asp:ListBox ID="lbListPrice" runat="server" DataSourceID="Products_Price" DataTextField="ListPrice" DataValueField="ListPrice" Rows="1"></asp:ListBox>
+<asp:ListBox ID="lbListPrice" runat="server" DataSourceID="Products_Price" DataTextField="ListPrice" DataValueField="ListPrice" Rows="1" Visible="false"></asp:ListBox>
        
     </form>
     </body>
