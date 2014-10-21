@@ -32,10 +32,12 @@ public partial class frmCreateOrder : System.Web.UI.Page
         // In this example, the third column (index 2) contains
         // the first name.
         Session["OrderID"] = row.Cells[1].Text;
+        gvOrderLineItems.Visible = true;
+        tblAddItems.Visible = true;
     }
     protected void Insert(object sender, EventArgs e)
     {
-        Session["OrderDate"] = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+        Session["OrderDate"] = DateTime.Now.ToString("MM/dd/yyyy");
         CurrentOrders.Insert();
     }
     protected void InsertLineItem(object sender, EventArgs e)
@@ -46,6 +48,5 @@ public partial class frmCreateOrder : System.Web.UI.Page
     protected void ddProducts_SelectedIndexChanged(object sender, EventArgs e)
     {
         Session["ProdID"] = ddProductID.SelectedValue.ToString();
-        lblTestVar.Text = Session["ProdID"].ToString();
     }
 }
