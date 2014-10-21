@@ -75,14 +75,12 @@
                 <asp:Parameter Name="OrderID" Type="Int32" />
             </UpdateParameters>
         </asp:SqlDataSource>
-        <asp:GridView ID="gvOrderLineItems" runat="server" AutoGenerateColumns="False" DataSourceID="OrderLineItems" style="margin-bottom: 1px" Visible="false">
+        <asp:GridView ID="gvOrderLineItems" runat="server" AutoGenerateColumns="False" DataSourceID="OrderLineItems" style="margin-bottom: 1px" Visible="False">
             <Columns>
-                <asp:BoundField DataField="OrderQty" HeaderText="Quantity" SortExpression="OrderQty" />
-                <asp:BoundField DataField="ProdName" HeaderText="Name" SortExpression="ProdName" ReadOnly="True" />
-                <asp:BoundField DataField="ProdDescription" HeaderText="Description" SortExpression="ProdDescription" ReadOnly="True" />
-                <asp:BoundField DataField="ListPrice" HeaderText="Unit Price" SortExpression="ListPrice" DataFormatString="{0:c}" ReadOnly="True" />
-                <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" ReadOnly="True" />
-                <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" />
+                <asp:BoundField DataField="OrderQty" HeaderText="OrderQty" SortExpression="OrderQty" />
+                <asp:BoundField DataField="ProdName" HeaderText="ProdName" SortExpression="ProdName" />
+                <asp:BoundField DataField="ProdDescription" HeaderText="ProdDescription" SortExpression="ProdDescription" />
+                <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" />
             </Columns>
             <EmptyDataTemplate>
                 There are no items in that purchase order, or there is no purchase order selected
@@ -111,18 +109,19 @@
         </asp:Table>
         <asp:SqlDataSource ID="Products" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [ProdName], [ProdID], [ListPrice] FROM [Product]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="OrderLineItems" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
-            InsertCommand="INSERT INTO [PurchaseOrderDetail] ([OrderID], [ProdID], [Message], [OrderQty]) VALUES (?, ?, ?, ?)" 
             ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-            SelectCommand="SELECT PurchaseOrderDetail.OrderQty, Product.ProdName, Product.ProdDescription, Product.ListPrice, PurchaseOrderDetail.UnitPrice, PurchaseOrderDetail.Message, PurchaseOrderDetail.LineTotal FROM (PurchaseOrderDetail INNER JOIN Product ON PurchaseOrderDetail.ProdID = Product.ProdID) WHERE (PurchaseOrderDetail.OrderID = @OrderID)" >
-            <InsertParameters>
-                <asp:SessionParameter Name="OrderID" SessionField="OrderID"/>
-                <asp:ControlParameter ControlID="ddProductID"  Name="ProductId" Type="Int32" />
-                <asp:ControlParameter ControlID="tbMessage" Name="Message" Type="String" />
-                <asp:ControlParameter ControlID="txtQuantity" Name="Quantity" Type="Int32" />
-            </InsertParameters>
+            SelectCommand="SELECT PurchaseOrderDetail.OrderQty, Product.ProdName, Product.ProdDescription, Product.ListPrice FROM (PurchaseOrderDetail INNER JOIN Product ON PurchaseOrderDetail.ProdID = Product.ProdID) WHERE PurchaseOrderDetail.OrderID = @OrderID" 
+            InsertCommand="INSERT INTO PurchaseOrderDetail(OrderID, OrderQty, ProdID) VALUES (?, ?, ?)" 
+            
+            >
             <SelectParameters>
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID" />
             </SelectParameters>
+            <InsertParameters>
+                <asp:SessionParameter Name="OrderID" SessionField="OrderID" />
+                <asp:ControlParameter Name="OrderQty" ControlID="txtQuantity" />
+                <asp:ControlParameter Name="ProdID" ControlID="ddProductID" />
+            </InsertParameters>
         </asp:SqlDataSource>
 
     </form>

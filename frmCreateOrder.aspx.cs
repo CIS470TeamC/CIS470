@@ -31,7 +31,8 @@ public partial class frmCreateOrder : System.Web.UI.Page
         // Display the first name from the selected row.
         // In this example, the third column (index 2) contains
         // the first name.
-        Session["OrderID"] = row.Cells[0].Text;
+        Session["OrderID"] = row.Cells[1].Text;
+        lblTestVar.Text = Session["OrderID"].ToString();
         gvOrderLineItems.Visible = true;
         tblAddItems.Visible = true;
     }
