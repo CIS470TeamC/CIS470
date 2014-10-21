@@ -13,6 +13,9 @@ public partial class frmCreateOrder : System.Web.UI.Page
         {
             Response.Redirect("frmLogin.aspx");
         }
+        // Set default product ID
+        Session["ProdID"] = 1;
+
     }
     protected void lbtnLogout_Click(object sender, EventArgs e)
     {
@@ -35,6 +38,8 @@ public partial class frmCreateOrder : System.Web.UI.Page
         lblTestVar.Text = Session["OrderID"].ToString();
         gvOrderLineItems.Visible = true;
         tblAddItems.Visible = true;
+        ddProductID.Items.Insert(0, new ListItem("Please select a country", ""));
+        //lbListPrice.SelectedIndex = 0;
     }
     protected void Insert(object sender, EventArgs e)
     {
@@ -43,6 +48,7 @@ public partial class frmCreateOrder : System.Web.UI.Page
     }
     protected void InsertLineItem(object sender, EventArgs e)
     {
+        Session["ProdTotal"] = Convert.ToInt32(txtQuantity.Text) * Convert.ToInt32(lbListPrice.Text);
         OrderLineItems.Insert();
         
     }

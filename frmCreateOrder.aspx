@@ -37,6 +37,7 @@
                 <asp:BoundField DataField="OrderDate" HeaderText="Date Order Was Placed" SortExpression="OrderDate" />
                 <asp:BoundField DataField="TotalDue" HeaderText="Total Cost" SortExpression="Currency" DataFormatString="{0:c}" />
             </Columns>
+            <SelectedRowStyle BackColor="#CCCCCC" />
         </asp:GridView>
         <table border="1" style="border-collapse: collapse">
     <tr>
@@ -81,6 +82,8 @@
                 <asp:BoundField DataField="ProdName" HeaderText="ProdName" SortExpression="ProdName" />
                 <asp:BoundField DataField="ProdDescription" HeaderText="ProdDescription" SortExpression="ProdDescription" />
                 <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" />
+                <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" />
+                <asp:BoundField DataField="ProdTotal" HeaderText="ProdTotal" SortExpression="ProdTotal" />
             </Columns>
             <EmptyDataTemplate>
                 There are no items in that purchase order, or there is no purchase order selected
@@ -110,8 +113,8 @@
         <asp:SqlDataSource ID="Products" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [ProdName], [ProdID], [ListPrice] FROM [Product]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="OrderLineItems" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
             ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-            SelectCommand="SELECT PurchaseOrderDetail.OrderQty, Product.ProdName, Product.ProdDescription, Product.ListPrice FROM (PurchaseOrderDetail INNER JOIN Product ON PurchaseOrderDetail.ProdID = Product.ProdID) WHERE PurchaseOrderDetail.OrderID = @OrderID" 
-            InsertCommand="INSERT INTO PurchaseOrderDetail(OrderID, OrderQty, ProdID) VALUES (?, ?, ?)" 
+            SelectCommand="SELECT PurchaseOrderDetail.OrderQty, Product.ProdName, Product.ProdDescription, Product.ListPrice, PurchaseOrderDetail.Message, PurchaseOrderDetail.ProdTotal FROM (PurchaseOrderDetail INNER JOIN Product ON PurchaseOrderDetail.ProdID = Product.ProdID) WHERE PurchaseOrderDetail.OrderID = @OrderID" 
+            InsertCommand="INSERT INTO PurchaseOrderDetail(OrderID, OrderQty, ProdID, Message, ProdTotal) VALUES (?, ?, ?, ?, ?)" 
             
             >
             <SelectParameters>
@@ -121,7 +124,19 @@
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID" />
                 <asp:ControlParameter Name="OrderQty" ControlID="txtQuantity" />
                 <asp:ControlParameter Name="ProdID" ControlID="ddProductID" />
+                <asp:ControlParameter Name="Message" ControlID="tbMessage" />
+                <asp:SessionParameter Name="ProdTotal" SessionField="ProdTotal"/>
             </InsertParameters>
+        </asp:SqlDataSource>
+
+        <asp:ListBox ID="lbListPrice" runat="server" DataSourceID="Products_Price" DataTextField="ListPrice" DataValueField="ListPrice" Rows="1"></asp:ListBox>
+        <asp:SqlDataSource ID="Products_Price" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
+            ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
+            SelectCommand="SELECT [ProdID], [ListPrice] FROM [Product] WHERE [ProdID] = @ProdID">
+            <SelectParameters>
+                <asp:ControlParameter Name="ProdID" ControlID="ddProductID" />
+            </SelectParameters>
         </asp:SqlDataSource>
 
     </form>
