@@ -47,7 +47,7 @@
         <asp:SqlDataSource ID="Catalog_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
         <asp:GridView ID="GridView1" runat="server"  CssClass="containerItems" HorizontalAlign="Center" GridLines="None" cellspacing="15" AutoGenerateColumns="False" DataKeyNames="ProdID" DataSourceID="Catalog_DB">
             <Columns>
-                <asp:ImageField DataImageUrlField="ProdImage" DataImageUrlFormatString="~\Images\{0}_thumb.jpg"></asp:ImageField>
+                <asp:ImageField DataImageUrlField="ProdImage" DataImageUrlFormatString="~\Images\{0}"></asp:ImageField>
                 <asp:BoundField DataField="ProdName" HeaderText="Product Name" SortExpression="ProdName" />
                 <asp:BoundField DataField="ProdDescription" HeaderText="Description" SortExpression="ProdDescription" />
                 <asp:BoundField DataField="JobType" HeaderText="Job Type" SortExpression="JobType">
