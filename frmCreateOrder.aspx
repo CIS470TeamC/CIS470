@@ -32,10 +32,18 @@
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField DataField="OrderID" HeaderText="Order Number" InsertVisible="False" ReadOnly="True" SortExpression="OrderID" />
-                <asp:CheckBoxField DataField="PayOnDel" HeaderText="Pay on Delivery" SortExpression="PayOnDel" />
                 <asp:BoundField DataField="Status" HeaderText="Validated?" SortExpression="Status" />
                 <asp:BoundField DataField="OrderDate" HeaderText="Date Order Was Placed" SortExpression="OrderDate" />
                 <asp:BoundField DataField="TotalDue" HeaderText="Total Cost" SortExpression="Currency" DataFormatString="{0:c}" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:Button ID="btnPayOnDel" runat="server" 
+                            CommandName="SwapPOD" 
+                            CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" 
+                            Text='<%# Eval("PayOnDel") %>' 
+                            OnCommand="btnPayOnDel_Command"/>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
             <SelectedRowStyle BackColor="#CCCCCC" />
         </asp:GridView>
@@ -65,12 +73,16 @@
                 <asp:Parameter Name="Status" Type="String" DefaultValue="Not Validated" />
                 <asp:SessionParameter Name="OrderDate" SessionField="OrderDate" />
                 <asp:Parameter Name="TotalDue" Type="Int32" DefaultValue="0" />
-                
             </InsertParameters>
             <UpdateParameters>
                 <asp:SessionParameter Name="OrderTotal" SessionField="OrderTotal" />
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID" />
             </UpdateParameters>
+        </asp:SqlDataSource>
+        <asp:SqlDataSource ID="CurrentOrders_PayOnDel" runat="server" 
+            ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" 
+            ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" 
+            SelectCommand="SELECT DISTINCT [PayOnDel] FROM [PurchaseOrderForm]" >
         </asp:SqlDataSource>
         <asp:GridView ID="gvOrderLineItems" runat="server" AutoGenerateColumns="False" DataSourceID="OrderLineItems" style="margin-bottom: 1px" Visible="False" onrowdatabound="gvOrderLineItems_RowDataBound">
             <Columns>
@@ -150,8 +162,5 @@
 <asp:ListBox ID="lbListPrice" runat="server" DataSourceID="Products_Price" DataTextField="ListPrice" DataValueField="ListPrice" Rows="1"></asp:ListBox>
        
     </form>
-    Troubleshooting to show variables
-    REMOVE BEFORE FINAL!!!
-            <asp:Label ID="lblTestVar" runat="server"></asp:Label>
     </body>
 </html>

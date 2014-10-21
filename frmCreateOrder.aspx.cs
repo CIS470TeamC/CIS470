@@ -72,4 +72,24 @@ public partial class frmCreateOrder : System.Web.UI.Page
         Session["OrderTotal"] = total;
         CurrentOrders.Update();
     }
+    protected void btnPayOnDel_Command(object sender, CommandEventArgs e)
+    {
+        int index = Convert.ToInt32(e.CommandArgument);
+        string order;
+        GridViewRow row = gvCurrentOrders.Rows[index];
+        order = row.Cells[1].Text;
+        Button btn = (Button)row.FindControl("btnPayOnDel");
+        if (btn.Text == "True") 
+        {
+            //Logic for PayOnDel currently True; set it to false
+            CurrentOrders_PayOnDel.UpdateCommand = "UPDATE [PurchaseOrderForm] SET [PayOnDel] = False WHERE [OrderID] = " + order;
+        }
+        else
+        {
+            //Logic for PayOnDel currently False; set it to true
+            CurrentOrders_PayOnDel.UpdateCommand = "UPDATE [PurchaseOrderForm] SET [PayOnDel] = True WHERE [OrderID] = " + order;
+        }
+        CurrentOrders_PayOnDel.Update();
+        
+    }
 }
