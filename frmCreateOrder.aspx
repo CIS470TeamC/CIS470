@@ -91,7 +91,7 @@
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:Label runat="server" Text="Product ID:"></asp:Label>
-                    <asp:TextBox runat="server" ID="txtProductID"></asp:TextBox>
+                    <asp:DropDownList runat="server" AutoPostBack="true" ID="ddProductID" DataSourceID="Products" DataTextField="ProdName" DataValueField="ProdID" OnSelectedIndexChanged="ddProducts_SelectedIndexChanged"></asp:DropDownList>
                     
                 </asp:TableCell>
                 <asp:TableCell>
@@ -104,7 +104,7 @@
 
             </asp:TableRow>
             
-        </asp:Table><asp:DropDownList runat="server" ID="ddProducts" DataSourceID="Products" DataTextField="ProdName" DataValueField="ProdID" OnSelectedIndexChanged="ddProducts_SelectedIndexChanged"></asp:DropDownList>
+        </asp:Table>
         <asp:SqlDataSource ID="Products" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [ProdName], [ProdID], [ListPrice] FROM [Product]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="OrderLineItems" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
             DeleteCommand="DELETE FROM [PurchaseOrderDetail] WHERE [OrderID] = ? AND [OrderDetailID] = ?" 
@@ -119,7 +119,7 @@
             <InsertParameters>
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID"/>
                 <asp:ControlParameter ControlID="txtQuantity" Name="Quantity" Type="Int32" />
-                <asp:ControlParameter ControlID="txtProductID"  Name="ProductId" Type="Int32" />
+                <asp:ControlParameter ControlID="ddProductID"  Name="ProductId" Type="Int32" />
                 <asp:SessionParameter Name="TotalCost" SessionField="TotalCost" />
             </InsertParameters>
             <SelectParameters>
@@ -134,6 +134,7 @@
             </UpdateParameters>
         </asp:SqlDataSource>
         <asp:Label runat="server" ID="CostValue" Text=""></asp:Label>
+
     </form>
     Troubleshooting to show variables
     REMOVE BEFORE FINAL!!!
