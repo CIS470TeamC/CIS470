@@ -41,11 +41,13 @@ public partial class frmCreateOrder : System.Web.UI.Page
     protected void InsertLineItem(object sender, EventArgs e)
     {
         OrderLineItems.Insert();
+        GridViewRow row = gvOrderLineItems.SelectedRow;
+        Session["TotalCost"] = row.Cells[7].Text;
         
     }
     protected void ddProducts_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Session["ProdID"] = ddProductID.SelectedValue.ToString();
+        Session["ProdID"] = ddProducts.SelectedValue.ToString();
         lblTestProd.Text = Session["ProdID"].ToString();
     }
 }
