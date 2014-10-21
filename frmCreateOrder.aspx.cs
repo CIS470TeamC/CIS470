@@ -90,6 +90,6 @@ public partial class frmCreateOrder : System.Web.UI.Page
             CurrentOrders_PayOnDel.UpdateCommand = "UPDATE [PurchaseOrderForm] SET [PayOnDel] = True WHERE [OrderID] = " + order;
             
         }
-        
+        CurrentOrders_PayOnDel.Update();
     }
 }

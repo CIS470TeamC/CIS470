@@ -28,20 +28,20 @@
     </table>
     
     </div>
-        <asp:GridView ID="gvCurrentOrders" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" OnSelectedIndexChanged="gvCurrentOrders_SelectedIndexChanged" CssClass="containerOrders" CellSpacing="15" HorizontalAlign="Center" GridLines="none">
+        <asp:GridView ID="gvCurrentOrders" runat="server" AutoGenerateColumns="False" DataKeyNames="OrderID" DataSourceID="CurrentOrders" OnSelectedIndexChanged="gvCurrentOrders_SelectedIndexChanged" CssClass="containerOrders" CellSpacing="15" HorizontalAlign="Center" GridLines="None">
             <Columns>
                 <asp:CommandField ShowSelectButton="True" />
                 <asp:BoundField DataField="OrderID" HeaderText="Order Number" InsertVisible="False" ReadOnly="True" SortExpression="OrderID" />
                 <asp:BoundField DataField="Status" HeaderText="Validated?" SortExpression="Status" />
                 <asp:BoundField DataField="OrderDate" HeaderText="Date Order Was Placed" SortExpression="OrderDate" />
                 <asp:BoundField DataField="TotalDue" HeaderText="Total Cost" SortExpression="Currency" DataFormatString="{0:c}" />
-                <asp:TemplateField>
+                <asp:TemplateField HeaderText="Pay On Delivery">
                     <ItemTemplate>
-                        <asp:Button ID="btnPayOnDel" runat="server" 
+                        <asp:Button ID="btnPayOnDel" runat="server"
                             CommandName="SwapPOD" 
                             CommandArgument="<%# ((GridViewRow) Container).RowIndex %>" 
                             Text='<%# Eval("PayOnDel") %>' 
-                            OnCommand="btnPayOnDel_Command" AutoPostBack="true" CssClass="btn"/>
+                            OnCommand="btnPayOnDel_Command" CssClass="btn"/>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>
@@ -159,7 +159,7 @@
                 <asp:ControlParameter Name="ProdID" ControlID="ddProductID" DefaultValue="1" />
             </SelectParameters>
         </asp:SqlDataSource>
-<asp:ListBox ID="lbListPrice" runat="server" DataSourceID="Products_Price" DataTextField="ListPrice" DataValueField="ListPrice" Rows="1" Visible="false"></asp:ListBox>
+<asp:ListBox CssClass="hide" ID="lbListPrice" runat="server" DataSourceID="Products_Price" DataTextField="ListPrice" DataValueField="ListPrice" Rows="1" Visible="true"></asp:ListBox>
        
     </form>
     </body>
