@@ -145,16 +145,24 @@
     
         <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" GridLines="None"  AutoGenerateColumns="False" HorizontalAlign="Center" DataSourceID="SqlDataSource1" CssClass="container3">
             <Columns>
-                <asp:BoundField DataField="OrderDate" HeaderText="  OrderDate  " SortExpression="OrderDate"></asp:BoundField>
-                <asp:BoundField DataField="CFName" HeaderText="  First Name  " SortExpression="CFName"></asp:BoundField>
-                <asp:BoundField DataField="CLName" HeaderText="  Last Name  " SortExpression="CLName"></asp:BoundField>
-                <asp:BoundField DataField="SalesOrderID" HeaderText="  SalesOrder  " InsertVisible="False" SortExpression="SalesOrderID"></asp:BoundField>
-                <asp:BoundField DataField="ProdID" HeaderText="  ProdID  " SortExpression="ProdID"></asp:BoundField>
-                <asp:BoundField DataField="OrderQty" HeaderText="  Qty  " SortExpression="OrderQty"></asp:BoundField>
-                <asp:CheckBoxField DataField="PayOnDel" HeaderText="  PayOnDel  " SortExpression="PayOnDel"></asp:CheckBoxField>
-                <asp:BoundField DataField="TotalDue" HeaderText="  TotalDue  " SortExpression="TotalDue"></asp:BoundField>
-                <asp:BoundField DataField="PaidAmt" HeaderText="  Amt Paid  " SortExpression="PaidAmt"></asp:BoundField>
-                <asp:BoundField DataField="RemainingAmt" HeaderText="  Remaining Amt  " SortExpression="RemainingAmt"></asp:BoundField>    
+                <asp:BoundField DataField="OrderDate" HeaderText="OrderDate  " SortExpression="OrderDate"></asp:BoundField>
+                <asp:BoundField DataField="CFName" HeaderText="First Name  " SortExpression="CFName"></asp:BoundField>
+                <asp:BoundField DataField="CLName" HeaderText="Last Name  " SortExpression="CLName"></asp:BoundField>
+                <asp:BoundField DataField="SalesOrderID" HeaderText="Sales Order #" InsertVisible="False" SortExpression="SalesOrderID">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="OrderQty" HeaderText="Qty  " SortExpression="OrderQty">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="TotalDue" HeaderText="Total" DataFormatString="{0:C}" SortExpression="TotalDue">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="PaidAmt" HeaderText="Amt Paid  " DataFormatString="{0:C}" SortExpression="PaidAmt">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="RemainingAmt" HeaderText="Remaining Amt  " DataFormatString="{0:C}" SortExpression="RemainingAmt">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>    
             </Columns>
         </asp:GridView>
 
@@ -163,7 +171,6 @@
             SelectCommand="SELECT SalesOrderForm.*, PurchaseOrderDetail.*, Customer.*, Users.*, PurchaseOrderForm.* FROM ((((SalesOrderForm INNER JOIN PurchaseOrderForm ON SalesOrderForm.OrderID = PurchaseOrderForm.OrderID) INNER JOIN PurchaseOrderDetail ON PurchaseOrderForm.OrderID = PurchaseOrderDetail.OrderID) INNER JOIN Customer ON SalesOrderForm.CustID = Customer.CustID AND PurchaseOrderForm.CustID = Customer.CustID) INNER JOIN Users ON Customer.UserID = Users.UserID) WHERE (((Users.UserLogon)=@CustID))">
             <SelectParameters>
                 <asp:SessionParameter Name="CustID" SessionField="UserNameID" DefaultValue="0" />
-
             </SelectParameters>
         </asp:SqlDataSource>
 

@@ -54,10 +54,15 @@
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" DataKeyNames="OrderID" CssClass="containerUpdateOrders" GridLines="None" cellspacing="15" HorizontalAlign="Center">
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
-                <asp:BoundField DataField="OrderID" HeaderText="OrderID" SortExpression="OrderID" ReadOnly="true" />
-                <asp:BoundField DataField="OrderDetailID" HeaderText="OrderDetailID" InsertVisible="False" ReadOnly="true" SortExpression="OrderDetailID" />
-                <asp:BoundField DataField="OrderQty" HeaderText="OrderQty" SortExpression="OrderQty" ReadOnly="true" />
-                <asp:BoundField DataField="ProdID" HeaderText="ProdID" SortExpression="ProdID" ReadOnly="true" />
+                <asp:BoundField DataField="OrderID" HeaderText="Order #" SortExpression="OrderID" ReadOnly="true">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="OrderQty" HeaderText="Quantity" SortExpression="OrderQty" ReadOnly="true">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="ProdID" HeaderText="Product ID" SortExpression="ProdID" ReadOnly="true">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
                 <asp:TemplateField HeaderText="Status" SortExpression="Status">
                     <EditItemTemplate>
                         <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource2" DataTextField="Status" DataValueField="Status" SelectedValue='<%# Bind("Status") %>'>
@@ -66,6 +71,7 @@
                     <ItemTemplate>
                         <asp:Label ID="Label1" runat="server" Text='<%# Bind("Status") %>'></asp:Label>
                     </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" />
                 </asp:TemplateField>
             </Columns>
             <EmptyDataTemplate>

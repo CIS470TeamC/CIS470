@@ -45,16 +45,20 @@
 
         
         <asp:SqlDataSource ID="Catalog_DB" runat="server" ConnectionString="<%$ ConnectionStrings:SiteDBConnectionString %>" ProviderName="<%$ ConnectionStrings:SiteDBConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Product]"></asp:SqlDataSource>
-                <asp:GridView ID="GridView1" runat="server"  CssClass="containerItems" HorizontalAlign="Center" GridLines="None" cellspacing="15" AutoGenerateColumns="False" DataKeyNames="ProdID" DataSourceID="Catalog_DB">
+        <asp:GridView ID="GridView1" runat="server"  CssClass="containerItems" HorizontalAlign="Center" GridLines="None" cellspacing="15" AutoGenerateColumns="False" DataKeyNames="ProdID" DataSourceID="Catalog_DB">
             <Columns>
-                <asp:BoundField DataField="ProdID" HeaderText="ProdID" InsertVisible="False" ReadOnly="True" SortExpression="ProdID" />
-                <asp:ImageField DataImageUrlField="ProdImage" DataImageUrlFormatString="~\Images\{0}_thumb.jpg">
-                </asp:ImageField>
-                <asp:BoundField DataField="ProdName" HeaderText="ProdName" SortExpression="ProdName" />
-                <asp:BoundField DataField="ProdDescription" HeaderText="ProdDescription" SortExpression="ProdDescription" />
-                <asp:BoundField DataField="JobType" HeaderText="JobType" SortExpression="JobType" />
-                <asp:BoundField DataField="MediaType" HeaderText="MediaType" SortExpression="MediaType" />
-                <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" DataFormatString="{0:C}" />
+                <asp:ImageField DataImageUrlField="ProdImage" DataImageUrlFormatString="~\Images\{0}"></asp:ImageField>
+                <asp:BoundField DataField="ProdName" HeaderText="Product Name" SortExpression="ProdName" />
+                <asp:BoundField DataField="ProdDescription" HeaderText="Description" SortExpression="ProdDescription" />
+                <asp:BoundField DataField="JobType" HeaderText="Job Type" SortExpression="JobType">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="MediaType" HeaderText="Media Type" SortExpression="MediaType">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="ListPrice" HeaderText="List Price" SortExpression="ListPrice" DataFormatString="{0:C}">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
             </Columns>
         </asp:GridView>
             

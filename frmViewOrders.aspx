@@ -30,17 +30,31 @@
 
         <asp:GridView ID="GridViewOrders" runat="server" cellspacing="15" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" CssClass="containerOrders" HorizontalAlign="Center" GridLines="None">
             <Columns>
-                <asp:BoundField DataField="SalesOrderID" HeaderText="  SalesOrder  " InsertVisible="False" SortExpression="SalesOrderID"></asp:BoundField>
-                <asp:BoundField DataField="PaidAmt" HeaderText="  Amt Paid  " SortExpression="PaidAmt"></asp:BoundField>
-                <asp:BoundField DataField="RemainingAmt" HeaderText="  Remaining Amt  " SortExpression="RemainingAmt"></asp:BoundField>
-                <asp:BoundField DataField="OrderQty" HeaderText="  Qty  " SortExpression="OrderQty"></asp:BoundField>
-                <asp:BoundField DataField="ProdID" HeaderText="  ProdID  " SortExpression="ProdID"></asp:BoundField>
-                <asp:BoundField DataField="CFName" HeaderText="  First Name  " SortExpression="CFName"></asp:BoundField>
-                <asp:BoundField DataField="CLName" HeaderText="  Last Name  " SortExpression="CLName"></asp:BoundField>
-                <asp:CheckBoxField DataField="PayOnDel" HeaderText="  PayOnDel  " SortExpression="PayOnDel"></asp:CheckBoxField>
-                <asp:BoundField DataField="Status" HeaderText="  Status  " SortExpression="Status"></asp:BoundField>
-                <asp:BoundField DataField="OrderDate" HeaderText="  OrderDate  " SortExpression="OrderDate"></asp:BoundField>
-                <asp:BoundField DataField="TotalDue" HeaderText="  TotalDue  " SortExpression="TotalDue"></asp:BoundField>
+                <asp:BoundField DataField="OrderDate" HeaderText="Order Date" SortExpression="OrderDate"></asp:BoundField>
+                <asp:BoundField DataField="SalesOrderID" HeaderText="Sales Order #" InsertVisible="False" SortExpression="SalesOrderID">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="CFName" HeaderText="First Name" SortExpression="CFName"></asp:BoundField>
+                <asp:BoundField DataField="CLName" HeaderText="Last Name" SortExpression="CLName"></asp:BoundField>
+                <asp:BoundField DataField="OrderQty" HeaderText="Qty" SortExpression="OrderQty">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="ProdID" HeaderText="Product ID" SortExpression="ProdID">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:CheckBoxField DataField="PayOnDel" HeaderText="Pay On Delivery" SortExpression="PayOnDel">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:CheckBoxField>
+                <asp:BoundField DataField="PaidAmt" HeaderText="Amt Paid" DataFormatString="{0:C}" SortExpression="PaidAmt">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="RemainingAmt" HeaderText="Remaining Amt" DataFormatString="{0:C}" SortExpression="RemainingAmt">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>                                                            
+                <asp:BoundField DataField="TotalDue" HeaderText="Total Due" DataFormatString="{0:C}" SortExpression="TotalDue">
+                    <ItemStyle HorizontalAlign="Center"></ItemStyle>
+                </asp:BoundField>
+                <asp:BoundField DataField="Status" HeaderText="Status" SortExpression="Status"></asp:BoundField> 
             </Columns>
         </asp:GridView>
 
