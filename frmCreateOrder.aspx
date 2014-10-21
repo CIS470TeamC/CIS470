@@ -99,6 +99,10 @@
                     <asp:TextBox runat="server" ID="tbMessage"></asp:TextBox>
                 </asp:TableCell>
                 <asp:TableCell>
+                    <asp:Label runat="server" Text="Quantity:"></asp:Label>
+                    <asp:TextBox runat="server" ID="txtQuantity"></asp:TextBox>
+                </asp:TableCell>
+                <asp:TableCell>
                     <asp:Button ID="addLineItem" runat="server" Text="Add Line Item" OnClick="InsertLineItem" />
                 </asp:TableCell>
 
