@@ -82,6 +82,9 @@
                 <asp:BoundField DataField="ProdName" HeaderText="ProdName" SortExpression="ProdName" />
                 <asp:BoundField DataField="ProdDescription" HeaderText="ProdDescription" SortExpression="ProdDescription" />
                 <asp:BoundField DataField="ListPrice" HeaderText="Unit Price" SortExpression="ListPrice" DataFormatString="{0:c}" />
+                <asp:BoundField DataField="ListPrice" HeaderText="ListPrice" SortExpression="ListPrice" />
+                <asp:BoundField DataField="Message" HeaderText="Message" SortExpression="Message" />
+                <asp:BoundField DataField="LineTotal" HeaderText="LineTotal" SortExpression="LineTotal" />
             </Columns>
             <EmptyDataTemplate>
                 There are no items in that purchase order, or there is no purchase order selected
@@ -108,9 +111,9 @@
         <asp:SqlDataSource ID="Products" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT [ProdName], [ProdID], [ListPrice] FROM [Product]"></asp:SqlDataSource>
         <asp:SqlDataSource ID="OrderLineItems" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" 
             DeleteCommand="DELETE FROM [PurchaseOrderDetail] WHERE [OrderID] = ? AND [OrderDetailID] = ?" 
-            InsertCommand="INSERT INTO [PurchaseOrderDetail] ([OrderID], [OrderQty], [ProdID], [TotalCost]) VALUES (?, ?, ?, ?)" 
+            InsertCommand="INSERT INTO [PurchaseOrderDetail] ([OrderID], [OrderQty], [ProdID]) VALUES (?, ?, ?)" 
             ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" 
-            SelectCommand="SELECT PurchaseOrderDetail.OrderQty, Product.ProdName, Product.ProdDescription, Product.ListPrice FROM (PurchaseOrderDetail INNER JOIN Product ON PurchaseOrderDetail.ProdID = Product.ProdID) WHERE (PurchaseOrderDetail.OrderID = @OrderID)" 
+            SelectCommand="SELECT PurchaseOrderDetail.OrderQty, Product.ProdName, Product.ProdDescription, Product.ListPrice, PurchaseOrderDetail.UnitPrice, PurchaseOrderDetail.Message, PurchaseOrderDetail.LineTotal FROM (PurchaseOrderDetail INNER JOIN Product ON PurchaseOrderDetail.ProdID = Product.ProdID) WHERE (PurchaseOrderDetail.OrderID = @OrderID)" 
             UpdateCommand="UPDATE [PurchaseOrderDetail] SET [OrderQty] = ?, [ProdID] = ?, [TotalCost] WHERE [OrderID] = ? AND [OrderDetailID] = ?">
             <DeleteParameters>
                 <asp:Parameter Name="OrderID" Type="Int32" />
@@ -120,7 +123,7 @@
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID"/>
                 <asp:ControlParameter ControlID="txtQuantity" Name="Quantity" Type="Int32" />
                 <asp:ControlParameter ControlID="ddProductID"  Name="ProductId" Type="Int32" />
-                <asp:SessionParameter Name="TotalCost" SessionField="TotalCost" />
+                
             </InsertParameters>
             <SelectParameters>
                 <asp:SessionParameter Name="OrderID" SessionField="OrderID" />
@@ -138,7 +141,7 @@
     </form>
     Troubleshooting to show variables
     REMOVE BEFORE FINAL!!!
-            <asp:Label ID="lblTestProd" runat="server"></asp:Label>
+            <asp:Label ID="lblTestVar" runat="server"></asp:Label>
 
 </body>
 </html>

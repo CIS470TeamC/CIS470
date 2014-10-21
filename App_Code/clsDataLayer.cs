@@ -83,21 +83,4 @@ public class clsDataLayer
         return DS;
     }
     #endregion
-    #region Calculate Order Total and Update Database
-    public static void DoSomething(string ProductID)
-    {
-        dsProducts DS;
-        OleDbConnection sqlConn;
-        OleDbDataAdapter sqlDA;
-
-        sqlConn = new OleDbConnection(clsDataLayer.GetDataConnection());
-
-        sqlDA = new OleDbDataAdapter("SELECT * FROM Product WHERE ProdID = ;" + ProductID + "'", sqlConn);
-
-        DS = new dsProducts();
-        sqlDA.Fill(DS.Product);
-
-        
-    }
-    #endregion
 }

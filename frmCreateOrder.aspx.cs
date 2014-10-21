@@ -46,6 +46,6 @@ public partial class frmCreateOrder : System.Web.UI.Page
     protected void ddProducts_SelectedIndexChanged(object sender, EventArgs e)
     {
         Session["ProdID"] = ddProductID.SelectedValue.ToString();
-        lblTestProd.Text = Session["ProdID"].ToString();
+        lblTestVar.Text = Session["ProdID"].ToString();
     }
 }
