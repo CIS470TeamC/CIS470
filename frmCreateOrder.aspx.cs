@@ -92,4 +92,8 @@ public partial class frmCreateOrder : System.Web.UI.Page
         }
         CurrentOrders_PayOnDel.Update();
     }
+    protected void lbtnMyAccount_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/frmMyAccount.aspx");
+    }
 }

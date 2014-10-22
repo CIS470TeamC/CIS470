@@ -33,7 +33,10 @@ public partial class frmMyAccount : System.Web.UI.Page
         Response.Redirect("public/default.aspx");
         
     }
- 
+    protected void lbtnCatalog_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/public/frmCatalog.aspx");
+    }
         
     
 }

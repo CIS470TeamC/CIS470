@@ -23,6 +23,10 @@
           <tr>
             <td><asp:LinkButton ID="lbtnLogout" runat="server" CssClass="topMenuLeft" OnClick="lbtnLogout_Click">LOGOUT</asp:LinkButton>
             </td>
+              <td>
+                   <div style="width: 100%; text-align:right;"><asp:LinkButton ID="lbtnMyAccount" runat="server" CssClass="topMenuRight" OnClick="lbtnMyAccount_Click">MY ACCOUNT</asp:LinkButton>
+           </div>
+              </td>
           </tr>
 
     </table>
